@@ -39,6 +39,7 @@
 
 					stopIds.forEach(function(stopId) {
 						var arrivals = stopLookup[stopId];
+						arrivals = _.sortBy(arrivals, 'eta');
 
 						// jquery-timeago ETAs
 						arrivals.map(function(arrival) {
