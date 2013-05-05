@@ -47,7 +47,7 @@
 	<h1>Bus stops within 300 meters</h1>
 
 	<div id=loading-container>
-		<p id=loading>Loading...</p>
+		<p id=loading>Getting location data...</p>
 		<p id=toggle-all class=hidden><a href=#toggle-all>Toggle all</a></p>
 	</div>
 
@@ -87,6 +87,8 @@
 		$(function() {
 			FastClick.attach(document.body);
 
+			// Handlebars
+
 			var stopTitleTemplate = document.getElementById('stop-title-template').innerHTML;
 			Handlebars.registerPartial('stopTitleTemplate', stopTitleTemplate);
 
@@ -98,7 +100,12 @@
 			var stopTemplate = document.getElementById('stop-template').innerHTML;
 			stopTemplate = Handlebars.compile(stopTemplate);
 
+			// Script
+
 			navigator.geolocation.getCurrentPosition(function(geoposition) {
+				var loading = document.getElementById('loading');
+				loading.innerHTML = "Loading bus arrival data..."
+
 				$.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
 					var stopLookup = _.groupBy(responseArrivals, 'stopId');
 					console.log(stopLookup);
@@ -114,8 +121,6 @@
 						var bKey = stopTitleTemplate({
 							exampleArrival: bExample,
 						});
-
-						console.log(aKey);
 
 						return aKey.localeCompare(bKey);
 					});
@@ -153,9 +158,12 @@
 						toggleAll.classList.remove('hidden');
 					});
 				}).fail(function(response) {
-					var loading = document.getElementById('loading-container');
+					var loading = document.getElementById('loading');
 					loading.innerHTML = "Couldn't load bus arrival data. Please try again later."
 				});
+			}, function(error) {
+				var loading = document.getElementById('loading');
+				loading.innerHTML = "Couldn't get location data."
 			});
 
 			$('body').on('click', function(event) {
