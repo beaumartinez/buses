@@ -11,7 +11,7 @@
 
 	{% raw %}
 		<script id=stop-template type=text/html>
-			<h2>{{ stopName }} {{#if stopId }}({{ stopId }}){{/ if }}</h2>
+			<h2>{{ stopName }} {{#if stopCode }}({{ stopCode }}){{/ if }}</h2>
 
 			{{# arrivals }}
 				{{> arrivalPartial }}	
@@ -36,6 +36,9 @@
 					console.log(stopLookup);
 
 					var stopIds = Object.getOwnPropertyNames(stopLookup);
+					stopIds.sort(function(stopId) {
+						return stopLookup[stopId].stopName + stopLookup[stopId].stopCode;
+					});
 
 					stopIds.forEach(function(stopId) {
 						var arrivals = stopLookup[stopId];
