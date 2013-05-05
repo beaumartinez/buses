@@ -37,6 +37,10 @@
 	.hidden {
 		display: none;
 	}
+
+	a.toggled {
+		color: #005580;
+	}
 </style>
 
 <body class=container>
@@ -143,6 +147,7 @@
 				if (event.target.hash == '#toggle') {
 					event.preventDefault();
 
+					event.target.classList.toggle('toggled');
 					$(event.target.parentNode).siblings().toggle();	
 				}
 			});
