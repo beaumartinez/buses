@@ -48,7 +48,7 @@
 
 	<div id=loading-container>
 		<p id=loading>Getting location data...</p>
-		<p id=toggle-all class=hidden><a href=#toggle-all>Toggle all</a></p>
+		<p class=hidden><a href=#toggle-all>Toggle all</a></p>
 	</div>
 
 	<article id=content></article>
@@ -158,8 +158,8 @@
 							var content = document.getElementById('content');
 							content.innerHTML += renderedTemplate;
 
-							var toggleAll = document.getElementById('toggle-all');
-							toggleAll.classList.remove('hidden');
+							var toggleAll = $('a[href=#toggle-all]')
+							toggleAll.parent().removeClass('hidden');
 						});
 					}
 				}).fail(function(response) {
