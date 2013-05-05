@@ -4,6 +4,19 @@
 <meta name=viewport content="maximum-scale=1, width=device-width">
 
 <body>
+	<h1>TFL bus arrivals within a 300-meter radius</h1>
+
+	<div id=loading>
+		<h2>Loading...</h2>
+	</div>
+
+	<article id=content>
+	</article>
+
+	<div id=attribution style="display: none;">
+		<p>Data provided by TFL</p>
+	</div>
+
 	<script src=//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js></script>
 	<script src=//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js></script>
 	<script src=//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.1.0/jquery.timeago.min.js></script>
@@ -66,7 +79,16 @@
 							arrivals: arrivals,
 						});
 
-						document.body.innerHTML += renderedTemplate;
+						// Add template, hide loading, add attribution
+
+						var loadingNode = document.getElementById('loading');
+						loadingNode.style.display = 'none';
+
+						var contentNode = document.getElementById('content');
+						contentNode.innerHTML += renderedTemplate;
+
+						var attributionNode = document.getElementById('attribution');
+						attributionNode.style.display = 'inherit';
 					});
 				});
 			});
