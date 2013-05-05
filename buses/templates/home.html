@@ -3,6 +3,12 @@
 <title>TFL Bus Arrivals</title>
 <meta name=viewport content="maximum-scale=1, width=device-width">
 
+<style>
+	.hidden {
+		display: none;
+	}
+</style>
+
 <body>
 	<h1>TFL bus arrivals within 300 meters</h1>
 
@@ -12,7 +18,7 @@
 
 	<article id=content></article>
 
-	<footer id=attribution style="display: none;">
+	<footer id=attribution class=hidden>
 		<p>Data provided by TFL</p>
 	</footer>
 
@@ -63,10 +69,10 @@
 
 						// jquery-timeago ETAs
 						arrivals.map(function(arrival) {
-							var newEta = new Date(arrival.eta);
-							newEta = $.timeago(newEta);
+							var eta = new Date(arrival.eta);
+							eta = $.timeago(newEta);
 
-							arrival.eta = newEta;
+							arrival.eta = eta;
 
 							return arrival;
 						});
@@ -81,13 +87,13 @@
 						// Add template, hide loading, add attribution
 
 						var loadingNode = document.getElementById('loading');
-						loadingNode.style.display = 'none';
+						loadingNode.classList.add('hidden');
 
 						var contentNode = document.getElementById('content');
 						contentNode.innerHTML += renderedTemplate;
 
 						var attributionNode = document.getElementById('attribution');
-						attributionNode.style.display = 'inherit';
+						attributionNode.classList.remove('hidden');
 					});
 				});
 			});
