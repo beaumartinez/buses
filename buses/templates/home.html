@@ -63,27 +63,25 @@
 	<script src=//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.3/handlebars.min.js></script>
 	<script src=//cdnjs.cloudflare.com/ajax/libs/fastclick/0.6.0/fastclick.min.js></script>
 
-	{% raw %}
-		<script id=stop-template type=text/html>
-			<div class=stop>
-				<h2 class=stop-title><a href=#toggle>{{> stopTitleTemplate }}</a></h2>
+	<script id=stop-template type=text/html>
+		<div class=stop>
+			<h2 class=stop-title><a href=#toggle>{{> stopTitleTemplate }}</a></h2>
 
-				<ol class=stop-arrivals>
-					{{# arrivals }}
-						{{> arrivalTemplate }}	
-					{{/ arrivals }}
-				</ol>
-			</div>
-		</script>
+			<ol class=stop-arrivals>
+				{{# arrivals }}
+					{{> arrivalTemplate }}	
+				{{/ arrivals }}
+			</ol>
+		</div>
+	</script>
 
-		<script id=stop-title-template type=text/html>
-			{{ exampleArrival.stopName }} {{#if exampleArrival.stopCode }}({{ exampleArrival.stopCode }}){{/ if }}
-		</script>
+	<script id=stop-title-template type=text/html>
+		{{ exampleArrival.stopName }} {{#if exampleArrival.stopCode }}({{ exampleArrival.stopCode }}){{/ if }}
+	</script>
 
-		<script id=arrival-template type=text/html>
-			<li>{{ route }} to {{ destination }} ({{ eta }})</li>
-		</script>
-	{% endraw %}
+	<script id=arrival-template type=text/html>
+		<li>{{ route }} to {{ destination }} ({{ eta }})</li>
+	</script>
 
 	<script>
 		$(function() {
