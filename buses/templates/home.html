@@ -1,0 +1,10 @@
+<script src=//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js></script>
+<script>
+	$(function() {
+		navigator.geolocation.getCurrentPosition(function(geoposition) {
+			$.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(response) {
+				console.log(response);
+			});
+		});
+	});
+</script>
