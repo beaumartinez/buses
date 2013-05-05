@@ -15,7 +15,9 @@ def home():
 @app.route('/arrival-times/<latitude>/<longitude>/')
 @app.route('/arrival-times/<latitude>/<longitude>/<radius>/')
 def get_arrival_times(latitude=None, longitude=None, radius=100):
-    return buses.get_arrival_times(latitude, longitude, radius)
+    arrival_times = buses.get_arrival_times(latitude, longitude, radius)
+
+    return flask.Response(arrival_times, mimetype='application/json')
 
 
 if __name__ == '__main__':
