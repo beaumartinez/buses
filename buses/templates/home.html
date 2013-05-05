@@ -39,6 +39,8 @@
 
 					stopIds.forEach(function(stopId) {
 						var arrivals = stopLookup[stopId];
+
+						// jquery-timeago ETAs
 						arrivals.map(function(arrival) {
 							var newEta = new Date(arrival.eta);
 							newEta = $.timeago(newEta);
@@ -49,7 +51,6 @@
 						});
 
 						var exampleArrival = arrivals[0];
-
 						var renderedTemplate = stopTemplate({
 							stopName: exampleArrival.stopName,
 							stopCode: exampleArrival.stopCode,
