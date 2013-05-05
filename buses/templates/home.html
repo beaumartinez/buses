@@ -2,45 +2,50 @@
 <meta charset=utf-8>
 <title>TFL Bus Arrivals</title>
 <meta name=viewport content="maximum-scale=1, width=device-width">
-<script src=//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js></script>
-<script src=//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js></script>
-<script src=//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.1.0/jquery.timeago.min.js></script>
-<script src=//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js></script>
 
-{% raw %}
-	<script id=stop-template type=text/html>
-		<li>{{ route }} ({{ eta }})</li>
-	</script>
-{% endraw %}
+<body>
+	<script src=//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js></script>
+	<script src=//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js></script>
+	<script src=//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.1.0/jquery.timeago.min.js></script>
+	<script src=//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js></script>
 
-<script>
-	$(function() {
-		var stopTemplate = Mustache.compile(document.getElementById('stop-template').innerHTML);
+	{% raw %}
+		<script id=stop-template type=text/html>
+			<li>{{ route }} ({{ eta }})</li>
+		</script>
+	{% endraw %}
 
-		$.timeago.settings.allowFuture = true;
+	<script>
+		$(function() {
+			var STOP_TEMPLATE = Mustache.compile(document.getElementById('stop-template').innerHTML);
 
-		navigator.geolocation.getCurrentPosition(function(geoposition) {
-			$.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
-				var stopLookup = _.groupBy(responseArrivals, 'stopId');
-				console.log(stopLookup);
+			$.timeago.settings.allowFuture = true;
 
-				var stopIds = Object.getOwnPropertyNames(stopLookup);
-				stopIds.forEach(function(stopId) {
-					var arrivals = stopLookup[stopId];
+			navigator.geolocation.getCurrentPosition(function(geoposition) {
+				$.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
+					var stopLookup = _.groupBy(responseArrivals, 'stopId');
+					console.log(stopLookup);
 
-					var exampleArrival = arrivals[0];
+					var stopIds = Object.getOwnPropertyNames(stopLookup);
+					stopIds.forEach(function(stopId) {
+						var arrivals = stopLookup[stopId];
 
-					document.write('<h2>' + exampleArrival.stopName + ' (' + exampleArrival.stopCode + ')</h2><ul>');
-					arrivals.forEach(function(arrival) {
-						document.write(stopTemplate({
-							route: arrival.route,
-							eta: $.timeago(new Date(arrival.eta)),
-						}));
+						var exampleArrival = arrivals[0];
+
+						document.body.innerHTML += '<h2>' + exampleArrival.stopName + ' (' + exampleArrival.stopCode + ')</h2><ul>';
+						arrivals.forEach(function(arrival) {
+							var renderedTemplate = STOP_TEMPLATE({
+								route: arrival.route,
+								eta: $.timeago(new Date(arrival.eta)),
+							});
+
+							document.body.innerHTML += renderedTemplate;
+						});
+
+						document.body.innerHTML += '</ul>';
 					});
-
-					document.write('</ul>');
 				});
 			});
 		});
-	});
-</script>
+	</script>
+</body>
