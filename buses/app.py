@@ -11,11 +11,9 @@ def home():
     return flask.render_template('home.html')
 
 
-@app.route('/arrival-times/')
 @app.route('/arrival-times/<latitude>/<longitude>/')
-@app.route('/arrival-times/<latitude>/<longitude>/<radius>/')
-def get_arrival_times(latitude=None, longitude=None, radius=buses.DEFAULT_RADIUS):
-    arrival_times = buses.get_arrival_times(latitude, longitude, radius)
+def get_arrival_times(latitude, longitude):
+    arrival_times = buses.get_arrival_times(latitude, longitude)
 
     return flask.Response(arrival_times, mimetype='application/json')
 

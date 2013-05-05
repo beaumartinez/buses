@@ -7,11 +7,8 @@ import requests
 DEFAULT_RADIUS = 300
 
 
-def get_arrival_times(latitude=None, longitude=None, radius=DEFAULT_RADIUS):
-    url = 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?ReturnList=StopPointName,StopID,StopPointIndicator,DestinationText,LineName,EstimatedTime'
-
-    if not None in (latitude, longitude):
-        url = url + '&Circle={},{},{}'.format(latitude, longitude, radius)
+def get_arrival_times(latitude, longitude, radius=DEFAULT_RADIUS):
+    url = 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?ReturnList=StopPointName,StopID,StopPointIndicator,DestinationText,LineName,EstimatedTime&Circle={},{},{}'.format(latitude, longitude, radius)
             
     response = requests.get(url)
     parsed_response = _parse_response(response.text)
