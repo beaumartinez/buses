@@ -20,6 +20,10 @@
 		<h2>Loading...</h2>
 	</div>
 
+	<div id=toggle-all-container class=hidden>
+		<a href=#toggle-all>Toggle all</a>
+	</div>
+
 	<article id=content></article>
 
 	<footer id=attribution class=hidden>
@@ -99,6 +103,9 @@
 
 						var attributionNode = document.getElementById('attribution');
 						attributionNode.classList.remove('hidden');
+
+						var toggleAllContainerNode = document.getElementById('toggle-all-container');
+						toggleAllContainerNode.classList.remove('hidden');
 					});
 				});
 			});
@@ -109,6 +116,12 @@
 
 					$(event.target.parentNode).siblings().toggle();	
 				}
+			});
+				
+			$('a[href=#toggle-all]').click(function(event) {
+				event.preventDefault();
+
+				$('a[href=#toggle]').click();
 			});
 		});
 	</script>
