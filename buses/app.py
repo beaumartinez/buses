@@ -21,4 +21,4 @@ def get_arrival_times(latitude=None, longitude=None, radius=buses.DEFAULT_RADIUS
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
