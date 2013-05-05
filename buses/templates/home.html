@@ -11,9 +11,11 @@
 					var arrivals = stopLookup[stopId];
 					console.log(arrivals);
 
-					document.write('<h1>' + stopId + '</h1><ul>');
+					var exampleArrival = arrivals[0];
+
+					document.write('<h1>' + exampleArrival.stopName + ' (' + exampleArrival.stopCode + ')</h1><ul>');
 					arrivals.forEach(function(arrival) {
-						document.write('<li>' + arrival.stopName + '</l1>');
+						document.write('<li>' + arrival.route + ' (' + arrival.eta + ')</l1>');
 					});
 
 					document.write('</ul>');
