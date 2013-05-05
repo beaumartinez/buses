@@ -16,8 +16,8 @@
 <body>
 	<h1>Bus stops within 300 meters</h1>
 
-	<div id=loading>
-		<h2>Loading...</h2>
+	<div id=loading-container>
+		<p>Loading...</p>
 	</div>
 
 	<div id=toggle-all-container class=hidden>
@@ -26,7 +26,7 @@
 
 	<article id=content></article>
 
-	<footer id=attribution class=hidden>
+	<footer id=attribution-container class=hidden>
 		<p>Data provided by TFL</p>
 	</footer>
 
@@ -95,17 +95,17 @@
 
 						// Add template, hide loading, add attribution
 
-						var loadingNode = document.getElementById('loading');
-						loadingNode.classList.add('hidden');
+						var loading = document.getElementById('loading-container');
+						loading.classList.add('hidden');
 
-						var contentNode = document.getElementById('content');
-						contentNode.innerHTML += renderedTemplate;
+						var content = document.getElementById('content');
+						content.innerHTML += renderedTemplate;
 
-						var attributionNode = document.getElementById('attribution');
-						attributionNode.classList.remove('hidden');
+						var attribution = document.getElementById('attribution-container');
+						attribution.classList.remove('hidden');
 
-						var toggleAllContainerNode = document.getElementById('toggle-all-container');
-						toggleAllContainerNode.classList.remove('hidden');
+						var toggleAll = document.getElementById('toggle-all-container');
+						toggleAll.classList.remove('hidden');
 					});
 				});
 			});
