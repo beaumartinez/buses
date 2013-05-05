@@ -3,9 +3,27 @@
 <title>London Bus Arrivals</title>
 <meta name=viewport content="maximum-scale=1, width=device-width">
 
+<link href=//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css rel=stylesheet>
 <style>
+	a, a:active, a:hover, a:visited {
+		tap-highlight-color: transparent;
+		-mozilla-tap-highlight-color: transparent;
+		-webkit-tap-highlight-color: transparent;
+
+		text-decoration: inherit;
+		color: #0088cc;
+	}
+
+	body {
+		font-size: 16px;
+	}
+
 	h1 {
-		margin-top: 0;
+		font-size: 24px;
+	}
+
+	h2 {
+		font-size: 20px;
 	}
 
 	.hidden {
@@ -13,7 +31,7 @@
 	}
 </style>
 
-<body>
+<body class=container>
 	<h1>Bus stops within 300 meters</h1>
 
 	<div id=loading-container>
@@ -34,6 +52,7 @@
 	<script src=//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js></script>
 	<script src=//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js></script>
 	<script src=//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.3/handlebars.min.js></script>
+	<script src=//cdnjs.cloudflare.com/ajax/libs/fastclick/0.6.0/fastclick.min.js></script>
 
 	{% raw %}
 		<script id=stop-template type=text/html>
@@ -55,6 +74,8 @@
 
 	<script>
 		$(function() {
+			FastClick.attach(document.body);
+
 			var arrivalPartial = document.getElementById('arrival-partial').innerHTML;
 			Handlebars.registerPartial('arrivalPartial', arrivalPartial);
 
