@@ -4,11 +4,14 @@ import re
 import requests
 
 
-def get_arrival_times(latitude=None, longitude=None, radius=100):
-    url = 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?ReturnList=StopPointName,StopPointIndicator,DestinationText,LineName,EstimatedTime'
+DEFAULT_RADIUS = 300
+
+
+def get_arrival_times(latitude=None, longitude=None, radius=DEFAULT_RADIUS):
+    url = 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?ReturnList=StopPointName,StopID,StopPointIndicator,DestinationText,LineName,EstimatedTime'
 
     if not None in (latitude, longitude):
-        url = url + '&Circle={},{},{}'.format(latitude, longitude, 100)
+        url = url + '&Circle={},{},{}'.format(latitude, longitude, radius)
             
     response = requests.get(url)
     parsed_response = _parse_response(response.text)
@@ -23,7 +26,7 @@ def _parse_response(response):
     stops = lines[1:]
 
     parsed_stops = map(json.loads, stops)
-    parsed_stops = map(lambda x: {'stopName': x[1], 'stopCode': x[2], 'route': x[3], 'destination': x[4], 'eta': x[5]}, parsed_stops)
+    parsed_stops = map(lambda x: {'stopName': x[1], 'stopId': x[2], 'stopCode': x[3], 'route': x[4], 'destination': x[5], 'eta': x[6]}, parsed_stops)
         
     json_stops = json.dumps(parsed_stops)
 

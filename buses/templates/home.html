@@ -1,9 +1,23 @@
 <script src=//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js></script>
+<script src=//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js></script>
 <script>
 	$(function() {
 		navigator.geolocation.getCurrentPosition(function(geoposition) {
-			$.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(response) {
-				console.log(response);
+			$.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
+				var stopLookup = _.groupBy(responseArrivals, 'stopId');
+				var stopIds = Object.getOwnPropertyNames(stopLookup);
+
+				stopIds.forEach(function(stopId) {
+					var arrivals = stopLookup[stopId];
+					console.log(arrivals);
+
+					document.write('<h1>' + stopId + '</h1><ul>');
+					arrivals.forEach(function(arrival) {
+						document.write('<li>' + arrival.stopName + '</l1>');
+					});
+
+					document.write('</ul>');
+				});
 			});
 		});
 	});
