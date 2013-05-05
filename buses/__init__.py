@@ -4,12 +4,10 @@ import re
 import requests
 
 
-def get_arrival_times(location=None):
+def get_arrival_times(latitude=None, longitude=None, radius=100):
     url = 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?ReturnList=StopPointName,StopPointIndicator,DestinationText,LineName,EstimatedTime'
 
-    if location is not None:
-        latitude, longitude = location
-
+    if not None in (latitude, longitude):
         url = url + '&Circle={},{},{}'.format(latitude, longitude, 100)
             
     response = requests.get(url)
@@ -31,4 +29,4 @@ def _parse_response(response):
 
     
 if __name__ == '__main__':
-    print get_arrival_times((51.5292769, -0.1825763))
+    print get_arrival_times(latitude=51.5292769, longitude=-0.1825763)
