@@ -24,7 +24,7 @@
 
 	<script src=//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js></script>
 	<script src=//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js></script>
-	<script src=//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.1.0/jquery.timeago.min.js></script>
+	<script src=//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js></script>
 	<script src=//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.3/handlebars.min.js></script>
 
 	{% raw %}
@@ -45,8 +45,6 @@
 
 	<script>
 		$(function() {
-			$.timeago.settings.allowFuture = true;
-
 			var arrivalPartial = document.getElementById('arrival-partial').innerHTML;
 			Handlebars.registerPartial('arrivalPartial', arrivalPartial);
 
@@ -67,10 +65,10 @@
 						var arrivals = stopLookup[stopId];
 						arrivals = _.sortBy(arrivals, 'eta');
 
-						// jquery-timeago ETAs
+						// Timeago ETAs
 						arrivals.map(function(arrival) {
-							var eta = new Date(arrival.eta);
-							eta = $.timeago(newEta);
+							var eta = moment(arrival.eta);
+							eta = eta.fromNow(true);
 
 							arrival.eta = eta;
 
