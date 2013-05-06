@@ -41,7 +41,7 @@ require([
             $.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
                 if (responseArrivals.length == 0) {
                     var loading = document.getElementById('loading');
-                    loading.innerHTML = "No bus arrival data. Are you in London?<p>TFL services might also be down.</p>"
+                    loading.innerHTML = "No bus arrival data. There might not be any buses for a while. TFL services might also be down.<p>Are you in London?</p>"
                 } else {
                     var stopLookup = _.groupBy(responseArrivals, 'stopId');
                     console.log(stopLookup);
