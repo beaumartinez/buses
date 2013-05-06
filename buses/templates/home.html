@@ -57,8 +57,6 @@
 		<p>Made by <a href=http://beaumartinez.com/>Beau Martinez</a>. Data provided by TFL. Not affiliated with TFL.</p>
 	</footer>
 
-	<script data-main=static/js/main src=static/js/require-jquery.js></script>
-
 	<script id=stop-template type=text/html>
 		<div class=stop>
 			<h2 class=stop-title><a href=#toggle>{{> stopTitleTemplate }}</a></h2>
@@ -78,6 +76,8 @@
 	<script id=arrival-template type=text/html>
 		<li>{{ route }} to {{ destination }} ({{ eta }})</li>
 	</script>
+
+	<script data-main=static/js/main src=static/js/require-jquery.js></script>
 
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
