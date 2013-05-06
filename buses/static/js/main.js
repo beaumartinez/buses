@@ -90,8 +90,8 @@ require([
                         var content = document.getElementById('content');
                         content.innerHTML += renderedTemplate;
 
-                        var toggleAll = $('a[href=#toggle-all]')
-                        toggleAll.parent().removeClass('hidden');
+                        var toggleAll = document.getElementById('toggle-all');
+                        toggleAll.classList.remove('hidden');
                     });
                 }
             }).fail(function(response) {
