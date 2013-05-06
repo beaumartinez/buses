@@ -29,6 +29,10 @@
 		margin-bottom: 10px;
 	}
 
+	h2 span {
+		display: block;
+	}
+
 	footer {
 		margin-top: 24px;
 	}
@@ -77,7 +81,7 @@
 	</script>
 
 	<script id=stop-title-template type=text/html>
-		{{ exampleArrival.stopName }} {{#if exampleArrival.stopCode }}({{ exampleArrival.stopCode }}){{/ if }} towards {{ exampleArrival.towards }}
+		{{ exampleArrival.stopName }} {{#if exampleArrival.stopCode }}({{ exampleArrival.stopCode }}){{/ if }}<span>Towards {{ exampleArrival.towards }}</span>
 	</script>
 
 	<script id=arrival-template type=text/html>
