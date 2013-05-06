@@ -24,13 +24,14 @@
 
 	h2 {
 		font-size: 20px;
-		line-height: 1;
-		margin-top: 22px;
-		margin-bottom: 10px;
+		line-height: 1.2;
+		margin-top: 18px;
+		margin-bottom: 8px;
 	}
 
-	h2 span {
+	h2 .towards {
 		display: block;
+		font-weight: normal;
 	}
 
 	footer {
@@ -47,10 +48,6 @@
 
 	.toggled ol {
 		display: none;
-	}
-
-	.toggled a {
-		color: #005580;
 	}
 </style>
 
@@ -81,7 +78,7 @@
 	</script>
 
 	<script id=stop-title-template type=text/html>
-		{{ exampleArrival.stopName }} {{#if exampleArrival.stopCode }}({{ exampleArrival.stopCode }}){{/ if }}<span>Towards {{ exampleArrival.towards }}</span>
+		{{ exampleArrival.stopName }} {{#if exampleArrival.stopCode }}({{ exampleArrival.stopCode }}){{/ if }}<span class=towards>Towards {{ exampleArrival.towards }}</span>
 	</script>
 
 	<script id=arrival-template type=text/html>
