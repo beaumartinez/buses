@@ -2,18 +2,16 @@
     baseUrl: 'buses/static/js/',
     dir: 'buses/build',
 
-    modules: [
-        {
-            name: 'main',
-        }
-    ],
+    modules: [{
+        name: 'main',
+    }],
 
     shim: {
         underscore: {
-          exports: "_"
+            exports: "_",
         },
         handlebars : {
-            exports: "Handlebars"
+            exports: "Handlebars",
         },
     }
 })
