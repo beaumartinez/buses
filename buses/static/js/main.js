@@ -4,10 +4,10 @@
     requirejs.config({
         shim: {
             'handlebars': {
-                exports: 'Handlebars'
+                exports: 'Handlebars',
             },
             'underscore': {
-                exports: '_'
+                exports: '_',
             },
         },
     });
