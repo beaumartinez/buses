@@ -39,7 +39,7 @@ require([
             loading.innerHTML = "Loading bus arrival data..."
 
             $.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
-                if (responseArrivals.length == 0) {
+                if (responseArrivals.length === 0) {
                     var loading = document.getElementById('loading');
                     loading.innerHTML = "No bus arrival data. There might not be any buses for a while. TFL services might also be down.<p>Are you in London?</p>"
                 } else {
@@ -103,19 +103,25 @@ require([
             loading.innerHTML = "Couldn't get location data."
         });
 
-        $('body').on('click', function(event) {
-            if (event.target.hash == '#toggle') {
-                event.preventDefault();
+        $('body').on('click', 'a[href=#toggle]', function(event) {
+            event.preventDefault();
 
-                event.target.classList.toggle('toggled');
-                $(event.target.parentNode).siblings().toggle();	
-            }
+            $(event.target).parents('.stop').toggleClass('toggled');
         });
             
         $('a[href=#toggle-all]').click(function(event) {
             event.preventDefault();
 
-            $('a[href=#toggle]').click();
+            var stops = $('.stop');
+            var hiddenStops = $('.stop.toggled');
+
+            if (hiddenStops.length === 0) {
+                stops.addClass('toggled');
+            } else if (hiddenStops.length !== stops.length) {
+                stops.addClass('toggled');
+            } else {
+                stops.removeClass('toggled');
+            }
         });
     });
 })
