@@ -6,5 +6,14 @@
         {
             name: 'main',
         }
-    ]
+    ],
+
+    shim: {
+        underscore: {
+          exports: "_"
+        },
+        handlebars : {
+            exports: "Handlebars"
+        },
+    }
 })
