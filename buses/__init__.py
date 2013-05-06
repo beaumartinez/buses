@@ -23,7 +23,14 @@ def _parse_response(response):
     stops = lines[1:]
 
     parsed_stops = map(json.loads, stops)
-    parsed_stops = map(lambda x: {'stopName': x[1], 'stopId': x[2], 'stopCode': x[3], 'route': x[4], 'destination': x[5], 'eta': x[6]}, parsed_stops)
+    parsed_stops = map(lambda x: {
+        'stopName': x[1], 
+        'stopId': x[2], 
+        'stopCode': x[3], 
+        'route': x[4], 
+        'destination': x[5], 
+        'eta': x[6]
+    }, parsed_stops)
         
     json_stops = json.dumps(parsed_stops)
 
