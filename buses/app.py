@@ -8,7 +8,10 @@ app = flask.Flask(__name__)
 
 @app.route('/')
 def home():
-    return open('buses/templates/home.html', 'r').read()
+    with open('buses/templates/home.html', 'r') as file_:
+        content = file_.read()
+
+    return content
 
 
 @app.route('/arrival-times/<latitude>/<longitude>/')
