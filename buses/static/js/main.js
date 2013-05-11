@@ -18,8 +18,6 @@
         'jquery',
         'moment',
         'underscore',
-
-        'ga',
     ], function(FastClick, Handlebars, $, moment, _) {
         $(function() {
             FastClick.attach(document.body);
@@ -130,4 +128,6 @@
             });
         });
     });
+
+    require(['ga']);
 })();
