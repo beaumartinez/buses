@@ -9,12 +9,6 @@ apt-get install -y nginx npm nodejs python python-pip
 
 # virtualenv
 
-# pip install virtualenv
-# 
-# mkdir -p /home/vagrant/.env/
-# virtualenv --distribute --no-site-packages /home/vagrant/.env/buses 
-# . /home/vagrant/.env/buses/bin/activate
-
 pip install -r /vagrant/requirements.txt
 
 # nginx
@@ -26,3 +20,10 @@ service nginx restart
 # r.js
 
 npm install -g requirejs
+r.js -o /vagrant/build.js
+
+# upstart
+
+ln -s /vagrant/upstart.conf /etc/init/buses.conf
+initctl reload-configuration
+service buses start
