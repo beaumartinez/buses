@@ -1,13 +1,20 @@
 # apt-get
 
-deb http://nginx.org/packages/ubuntu/ precise nginx
-add-apt-repository ppa:chris-lea/node.js
-
 apt-get update
 
-apt-get install -y nginx npm nodejs python python-pip
+# Necessary for add-apt-repository
+apt-get install -y python-software-properties
+
+add-apt-repository -y ppa:chris-lea/node.js
+add-apt-repository -y ppa:nginx/stable
+apt-get update
+
+apt-get install -y nginx nodejs python python-pip
 
 # virtualenv
+
+pip install --upgrade pip
+hash -r
 
 pip install -r /vagrant/requirements.txt
 
@@ -24,6 +31,9 @@ r.js -o /vagrant/build.js
 
 # upstart
 
+# We're symlinking the Upstart job. Upstart doesn't work well with symlinks, so
+# we have to call "initctl reload-configuration" explicitly for it to recognize
+# it
 ln -s /vagrant/upstart.conf /etc/init/buses.conf
 initctl reload-configuration
 service buses start
