@@ -20,8 +20,13 @@ pip install -r /vagrant/requirements.txt
 
 # nginx
 
-rm /etc/nginx/sites-available/default
-ln -s /vagrant/nginx.conf /etc/nginx/sites-available/default
+rm /etc/nginx/sites-enabled/default
+
+ln -s /vagrant/nginx-development.conf /etc/nginx/sites-available/development
+ln -s /vagrant/nginx-production.conf /etc/nginx/sites-available/production
+
+ln -s /etc/nginx/sites-available/development /etc/nginx/sites-enabled/development
+
 service nginx restart
 
 # r.js
