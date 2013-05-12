@@ -38,7 +38,7 @@
                 $.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
                     if (responseArrivals.length === 0) {
                         var loading = document.getElementById('loading');
-                        loading.innerHTML = "No bus arrival data. There might not be any buses for a while. TFL services might also be down.";
+                        loading.innerHTML = "No bus arrival data. There might not be any buses for a while. TFL services might also be down. Please try again later.";
                     } else {
                         var stopLookup = _.groupBy(responseArrivals, 'stopId');
                         console.log(stopLookup);
@@ -93,7 +93,12 @@
                     }
                 }).fail(function(response) {
                     var loading = document.getElementById('loading');
-                    loading.innerHTML = "Couldn't load bus arrival data. Please try again later.";
+
+                    if (response.status === 502) {
+                        loading.innerHTML = "TFL services are down. Please try again later.";
+                    } else {
+                        loading.innerHTML = "Couldn't load bus arrival data. Please try again later.";
+                    }
                 });
             }, function(error) {
                 var loading = document.getElementById('loading');
