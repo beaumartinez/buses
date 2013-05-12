@@ -3,22 +3,16 @@
 
     requirejs.config({
         shim: {
-            'handlebars': {
+            handlebars: {
                 exports: 'Handlebars',
             },
-            'underscore': {
+            underscore: {
                 exports: '_',
             },
         },
     });
 
-    require([
-        'fastclick',
-        'handlebars',
-        'jquery',
-        'moment',
-        'underscore',
-    ], function(FastClick, Handlebars, $, moment, _) {
+    require(['fastclick', 'handlebars', 'jquery', 'moment', 'underscore'], function(FastClick, Handlebars, $, moment, _) {
         $(function() {
             FastClick.attach(document.body);
 
