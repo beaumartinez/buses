@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
-if [[ -n "$1" ]]; then
-    HOST_ARGUMENT="--bind $1"
+if [[ -n "$@" ]]; then
+    HOST_ARGUMENT="$@"
 fi
 
-gunicorn buses.app_debug:app --workers=4 $HOST_ARGUMENT
+python -m buses.app_debug $HOST_ARGUMENT
