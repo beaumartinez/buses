@@ -22,5 +22,5 @@
 
     removeCombined: true,
 
-    optimizeCss: 'standard.keepComments',
+    preserveLicenseComments: false,
 }
