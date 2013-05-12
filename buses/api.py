@@ -1,4 +1,5 @@
 import json
+import logging
 import re
 
 import requests
@@ -11,9 +12,24 @@ def get_arrival_times(latitude, longitude, radius=DEFAULT_RADIUS):
     url = 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?ReturnList=StopPointName,StopID,StopPointIndicator,DestinationText,LineName,EstimatedTime,Towards&Circle={},{},{}'.format(latitude, longitude, radius)
             
     response = requests.get(url)
-    parsed_response = _parse_response(response.text)
 
-    return parsed_response
+    if response.status_code == 200:
+        status = 200
+        parsed_response = _parse_response(response.text)
+    else:
+        logging.warning('TFL error {} {}'.format(response.status_code, response.text))
+
+        status = 502
+        parsed_response = {
+            'upstream_error': {
+                'status': response.status_code,
+                'content': response.text,
+            },
+        }
+
+        parsed_response = json.dumps(parsed_response)
+
+    return status, parsed_response
 
 
 def _parse_response(response):
