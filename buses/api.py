@@ -40,23 +40,33 @@ def get_arrival_times(latitude, longitude, radius=DEFAULT_RADIUS):
 
     url = _create_url(latitude, longitude, radius)
 
-    response = requests.get(url)
+    try:
+        response = requests.get(url)
+    except requests.exceptions.ConnectionError:
+        logging.warning('Couldn\'t connect to TFL\'s services')
 
-    if response.status_code == 200:
-        status = 200
-        parsed_response = _parse_response(response.text, latitude, longitude)
-    else:
-        logging.warning('TFL error {} {}'.format(response.status_code, response.text))
-
-        status = 502
+        status = 500
         parsed_response = {
-            'upstream_error': {
-                'status': response.status_code,
-                'content': response.text,
-            },
+            'internal_error': 'Couldn\'t connect to TFL\'s services',
         }
 
         parsed_response = json.dumps(parsed_response)
+    else:
+        if response.status_code == 200:
+            status = 200
+            parsed_response = _parse_response(response.text, latitude, longitude)
+        else:
+            logging.warning('TFL error {} {}'.format(response.status_code, response.text))
+
+            status = 502
+            parsed_response = {
+                'upstream_error': {
+                    'status': response.status_code,
+                    'content': response.text,
+                },
+            }
+
+            parsed_response = json.dumps(parsed_response)
 
     return status, parsed_response
 
