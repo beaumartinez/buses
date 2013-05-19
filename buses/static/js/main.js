@@ -108,7 +108,7 @@
                         lastUpdated.parentNode.classList.remove('hidden');
                         lastUpdated.innerHTML = moment().format('HH:mm:ss');
 
-                        accuracy.innerHTML = geoposition.coords.accuracy;
+                        accuracy.innerHTML = geoposition.coords.accuracy.toFixed(0);
 
                         loading.classList.add('hidden');
                     }
