@@ -44,6 +44,11 @@ footer {
 	display: none;
 }
 
+.stop-arrivals {
+	margin-left: 0;
+	list-style: none;
+}
+
 .toggled ol {
 	display: none;
 }
