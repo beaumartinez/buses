@@ -86,6 +86,12 @@
                             var content = document.getElementById('content');
                             content.innerHTML += renderedTemplate;
 
+                            var lastUpdatedContainer = document.getElementById('last-updated-container');
+                            lastUpdatedContainer.classList.remove('hidden');
+
+                            var lastUpdated = document.getElementById('last-updated');
+                            lastUpdated.innerHTML = moment().format('HH:mm:ss');
+
                             var toggleAll = document.getElementById('toggle-all');
                             toggleAll.classList.remove('hidden');
                         });
