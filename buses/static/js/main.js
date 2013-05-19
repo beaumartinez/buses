@@ -31,15 +31,38 @@
 
             // Script
 
-            navigator.geolocation.getCurrentPosition(function(geoposition) {
-                var loading = document.getElementById('loading');
-                loading.innerHTML = "Loading bus arrival data...";
+            var loading = document.getElementById('loading');
+            var error = document.getElementById('error');
+
+            var content = document.getElementById('content');
+
+            var toggleAll = document.getElementById('toggle-all');
+            var lastUpdated = document.getElementById('last-updated');
+            var accuracy = document.getElementById('accuracy');
+
+            function _error(message) {
+                error.innerHTML = message;
+
+                loading.classList.add('hidden');
+                error.classList.remove('hidden');
+            }
+
+            function _loading(message) {
+                loading.innerHTML = message;
+
+                loading.classList.remove('hidden');
+                error.classList.add('hidden');
+            }
+
+            navigator.geolocation.watchPosition(function(geoposition) {
+                _loading("Loading bus arrival data...");
 
                 $.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
                     if (responseArrivals.length === 0) {
-                        var loading = document.getElementById('loading');
-                        loading.innerHTML = "No bus arrival data. There might not be any buses for a while. TFL services might also be down. Please try again later.";
+                        _error("No bus arrival data. There might not be any buses for a while. TFL services might also be down. Please try again later.");
                     } else {
+                        content.innerHTML = '';
+
                         var stopLookup = _.groupBy(responseArrivals, 'stopId');
                         console.log(stopLookup);
 
@@ -80,34 +103,25 @@
 
                             // Add template, hide loading, add attribution
 
-                            var loading = document.getElementById('loading');
-                            loading.classList.add('hidden');
-
-                            var content = document.getElementById('content');
                             content.innerHTML += renderedTemplate;
-
-                            var lastUpdatedContainer = document.getElementById('last-updated-container');
-                            lastUpdatedContainer.classList.remove('hidden');
-
-                            var lastUpdated = document.getElementById('last-updated');
-                            lastUpdated.innerHTML = moment().format('HH:mm:ss');
-
-                            var toggleAll = document.getElementById('toggle-all');
-                            toggleAll.classList.remove('hidden');
                         });
+
+                        lastUpdated.parentNode.classList.remove('hidden');
+                        lastUpdated.innerHTML = moment().format('HH:mm:ss');
+
+                        accuracy.innerHTML = geoposition.coords.accuracy;
+
+                        loading.classList.add('hidden');
+                        toggleAll.classList.remove('hidden');
                     }
                 }).fail(function(response) {
-                    var loading = document.getElementById('loading');
+                    var errorMessage = (response.status === 502) ? "TFL services are down." : "Couldn't load bus arrival data.";
+                    errorMessage += " " + "Please try again later.";
 
-                    if (response.status === 502) {
-                        loading.innerHTML = "TFL services are down. Please try again later.";
-                    } else {
-                        loading.innerHTML = "Couldn't load bus arrival data. Please try again later.";
-                    }
+                    _error(errorMessage);
                 });
             }, function(error) {
-                var loading = document.getElementById('loading');
-                loading.innerHTML = "Couldn't get location data.";
+                _error("Couldn't get location data.");
             });
 
             $('body').on('click', 'a[href=#toggle]', function(event) {

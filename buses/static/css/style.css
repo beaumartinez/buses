@@ -36,6 +36,10 @@ footer {
 	margin-top: 14px;
 }
 
+#error {
+	font-weight: bold;
+}
+
 #loading-container {
 	margin-bottom: 12px;
 }

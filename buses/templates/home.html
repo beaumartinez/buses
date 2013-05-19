@@ -11,13 +11,14 @@
 
 	<div id=loading-container>
 		<p id=loading>Getting location data...</p>
+		<p id=error class=hidden></p>
+		<p class=hidden>Data loaded at <span id=last-updated></span>. Accurate to <span id=accuracy></span> meters.</p>
 		<p id=toggle-all class=hidden><a href=#toggle-all>Toggle all</a></p>
 	</div>
 
 	<article id=content></article>
 
 	<footer>
-		<p id=last-updated-container class=hidden>Bus arrival data loaded at <span id=last-updated></span>.</p>
 		<p>Made by <a href=http://beaumartinez.com/ target=_blank>Beau Martinez</a>. Data provided by TFL.</p>
 	</footer>
 
