@@ -50,15 +50,8 @@
                 error.classList.remove('hidden');
             }
 
-            function _loading(message) {
-                loading.innerHTML = message;
-
-                loading.classList.remove('hidden');
-                error.classList.add('hidden');
-            }
-
             navigator.geolocation.watchPosition(function(geoposition) {
-                _loading("Loading bus arrival data...");
+                loading.innerHTML = message;
 
                 $.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
                     if (responseArrivals.length === 0) {
@@ -76,6 +69,9 @@
 
                             return aExample.distance - bExample.distance;
                         });
+
+                        error.classList.add('hidden');
+                        loading.classList.add('hidden');
 
                         stopIds.forEach(function(stopId) {
                             var arrivals = stopLookup[stopId];
@@ -117,8 +113,6 @@
                         lastUpdatedTimeago.dataset.livestamp = now.unix();
 
                         accuracy.innerHTML = geoposition.coords.accuracy.toFixed(0);
-
-                        loading.classList.add('hidden');
                     }
                 }).fail(function(response) {
                     var errorMessage = (response.status === 502) ? "TFL services are down." : "Couldn't load bus arrival data.";
