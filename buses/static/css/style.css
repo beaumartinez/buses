@@ -49,6 +49,6 @@ footer {
 	list-style: none;
 }
 
-.toggled ol {
+.toggled .stop-arrivals {
 	display: none;
 }
