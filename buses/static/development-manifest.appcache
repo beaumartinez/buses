@@ -8,6 +8,7 @@ CACHE:
 /static/js/ga.js
 /static/js/handlebars.js
 /static/js/jquery.js
+/static/js/livestamp.js
 /static/js/main.js
 /static/js/moment.js
 /static/js/require.js

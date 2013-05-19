@@ -8,6 +8,7 @@
         fastclick: 'js/fastclick',
         handlebars: 'js/handlebars',
         jquery: 'js/jquery',
+        livestamp: 'js/livestamp',
         moment: 'js/moment',
         underscore: 'js/underscore',
 
