@@ -129,21 +129,6 @@
 
                 $(event.target).parents('.stop').toggleClass('toggled');
             });
-                
-            $('a[href=#toggle-all]').click(function(event) {
-                event.preventDefault();
-
-                var stops = $('.stop');
-                var hiddenStops = $('.stop.toggled');
-
-                if (hiddenStops.length === 0) {
-                    stops.addClass('toggled');
-                } else if (hiddenStops.length !== stops.length) {
-                    stops.addClass('toggled');
-                } else {
-                    stops.removeClass('toggled');
-                }
-            });
         });
     });
 
