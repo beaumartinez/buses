@@ -36,7 +36,6 @@
 
             var content = document.getElementById('content');
 
-            var toggleAll = document.getElementById('toggle-all');
             var lastUpdated = document.getElementById('last-updated');
             var accuracy = document.getElementById('accuracy');
 
@@ -112,7 +111,6 @@
                         accuracy.innerHTML = geoposition.coords.accuracy;
 
                         loading.classList.add('hidden');
-                        toggleAll.classList.remove('hidden');
                     }
                 }).fail(function(response) {
                     var errorMessage = (response.status === 502) ? "TFL services are down." : "Couldn't load bus arrival data.";
