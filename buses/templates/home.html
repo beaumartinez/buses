@@ -26,7 +26,7 @@
 
 			<ol class=stop-arrivals>
 				{{# arrivals }}
-					{{> arrivalTemplate }}	
+					<li>{{> arrivalTemplate }}	
 				{{/ arrivals }}
 			</ol>
 		</section>
@@ -35,7 +35,7 @@
 		{{ exampleArrival.stopName }} {{#if exampleArrival.stopCode }}({{ exampleArrival.stopCode }}){{/ if }}<span class=towards>Towards {{ exampleArrival.towards }}</span>
 	</script>
 	<script id=arrival-template type=text/html>
-		<li>{{ route }} to {{ destination }} ({{ eta }})</li>
+		{{ route }} to {{ destination }} ({{ eta }})
 	</script>
 
 	<script data-main=static/js/main src=static/js/require.js></script>
