@@ -1,0 +1,17 @@
+CACHE MANIFEST
+
+CACHE:
+/
+/static/css/bootstrap.css
+/static/css/style.css
+/static/js/fastclick.js
+/static/js/ga.js
+/static/js/handlebars.js
+/static/js/jquery.js
+/static/js/main.js
+/static/js/moment.js
+/static/js/require.js
+/static/js/underscore.js
+
+NETWORK:
+*
