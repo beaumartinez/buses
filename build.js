@@ -23,4 +23,6 @@
     removeCombined: true,
 
     preserveLicenseComments: false,
+
+    optimizeCss: 'standard',
 }
