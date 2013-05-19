@@ -2,13 +2,13 @@
 <html manifest=static/manifest.appcache>
 <meta charset=utf-8>
 <title>London Bus Arrival Times</title>
-<meta name=description content="London bus arrival times for stops within 300 meters of your current location.">
+<meta name=description content="London bus arrival times for stops within 300 metres of your current location.">
 <meta name=viewport content="maximum-scale=1, width=device-width">
 
 <link href=static/css/style.css rel=stylesheet>
 
 <body class=container>
-	<h1>Bus stops within 300 meters</h1>
+	<h1>Bus stops within 300 metres</h1>
 
 	<div id=loading-container>
 		<p id=loading>Getting location data...</p>
@@ -18,7 +18,7 @@
 	<article id=content></article>
 
 	<footer>
-		<p class=hidden>Data loaded at <span id=last-updated></span> (<span id=last-updated-timeago></span>). Accurate to <span id=accuracy></span> meters.</p>
+		<p class=hidden>Data loaded at <span id=last-updated></span> (<span id=last-updated-timeago></span>). Accurate to <span id=accuracy></span> metres.</p>
 		<p>Made by <a href=http://beaumartinez.com/ target=_blank>Beau Martinez</a>. Data provided by TFL.</p>
 	</footer>
 
@@ -36,7 +36,7 @@
 	<script id=stop-title-template type=text/html>
 		{{ exampleArrival.stopName }} {{#if exampleArrival.stopCode }}({{ exampleArrival.stopCode }}){{/ if }}
 		<span class=break>Towards {{ exampleArrival.towards }}</span>
-		<span class=break>{{ exampleArrival.distance }} meters away</span>
+		<span class=break>{{ exampleArrival.distance }} metres away</span>
 	</script>
 	<script id=arrival-template type=text/html>
 		{{ route }} to {{ destination }} ({{ eta }})
