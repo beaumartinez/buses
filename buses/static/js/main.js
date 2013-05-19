@@ -9,10 +9,13 @@
             underscore: {
                 exports: '_',
             },
+            livestamp: {
+                deps: ['jquery', 'moment',],
+            },
         },
     });
 
-    require(['fastclick', 'handlebars', 'jquery', 'moment', 'underscore'], function(FastClick, Handlebars, $, moment, _) {
+    require(['fastclick', 'handlebars', 'jquery', 'moment', 'underscore', 'livestamp'], function(FastClick, Handlebars, $, moment, _) {
         $(function() {
             FastClick.attach(document.body);
 
@@ -37,6 +40,7 @@
             var content = document.getElementById('content');
 
             var lastUpdated = document.getElementById('last-updated');
+            var lastUpdatedTimeago = document.getElementById('last-updated-timeago');
             var accuracy = document.getElementById('accuracy');
 
             function _error(message) {
@@ -106,7 +110,11 @@
                         });
 
                         lastUpdated.parentNode.classList.remove('hidden');
-                        lastUpdated.innerHTML = moment().format('HH:mm:ss');
+
+                        var now = moment();
+
+                        lastUpdated.innerHTML = now.format('HH:mm:ss');
+                        lastUpdatedTimeago.dataset.livestamp = now.unix();
 
                         accuracy.innerHTML = geoposition.coords.accuracy.toFixed(0);
 
