@@ -48,14 +48,7 @@
                             var aExample = stopLookup[a][0];
                             var bExample = stopLookup[b][0];
 
-                            var aKey = stopTitleTemplate({
-                                exampleArrival: aExample,
-                            });
-                            var bKey = stopTitleTemplate({
-                                exampleArrival: bExample,
-                            });
-
-                            return aKey.localeCompare(bKey);
+                            return aExample.distance - bExample.distance;
                         });
 
                         stopIds.forEach(function(stopId) {
@@ -68,6 +61,12 @@
                                 eta = eta.fromNow(true);
 
                                 arrival.eta = eta;
+
+                                return arrival;
+                            });
+                            arrivals.map(function(arrival) {
+                                arrival.distance = arrival.distance * 1000;
+                                arrival.distance = arrival.distance.toFixed(0);
 
                                 return arrival;
                             });

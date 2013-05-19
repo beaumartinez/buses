@@ -32,7 +32,9 @@
 		</section>
 	</script>
 	<script id=stop-title-template type=text/html>
-		{{ exampleArrival.stopName }} {{#if exampleArrival.stopCode }}({{ exampleArrival.stopCode }}){{/ if }}<span class=towards>Towards {{ exampleArrival.towards }}</span>
+		{{ exampleArrival.stopName }} {{#if exampleArrival.stopCode }}({{ exampleArrival.stopCode }}){{/ if }}
+		<span class=break>Towards {{ exampleArrival.towards }}</span>
+		<span class=break>{{ exampleArrival.distance }} meters away</span>
 	</script>
 	<script id=arrival-template type=text/html>
 		{{ route }} to {{ destination }} ({{ eta }})
