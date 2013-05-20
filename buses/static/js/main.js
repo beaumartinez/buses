@@ -20,6 +20,8 @@
         $(function() {
             FastClick.attach(document.body);
 
+            $.livestamp.interval(10);
+
             // Handlebars
 
             var stopTitleTemplate = document.getElementById('stop-title-template').innerHTML;
