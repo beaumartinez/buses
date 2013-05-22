@@ -116,7 +116,7 @@
             $('body').on('click', '.stop', function(event) {
                 event.preventDefault();
 
-                $(event.target).parents('.stop').children('.stop-arrivals').toggleClass('toggled');
+                $(event.target).parents('.stop').children('.stop-arrivals').toggleClass('hidden');
             });
 
             var hammer = Hammer(document.body, {
@@ -131,11 +131,11 @@
             });
 
             hammer.on('pinchin', function(event) {
-                $('.stop-arrivals').addClass('toggled');
+                $('.stop-arrivals').addClass('hidden');
             });
 
             hammer.on('pinchout', function(event) {
-                $('.stop-arrivals').removeClass('toggled');
+                $('.stop-arrivals').removeClass('hidden');
             });
         });
     });
