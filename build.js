@@ -6,6 +6,7 @@
         main: 'js/main',
 
         fastclick: 'js/fastclick',
+        hammer: 'js/hammer',
         handlebars: 'js/handlebars',
         jquery: 'js/jquery',
         livestamp: 'js/livestamp',
