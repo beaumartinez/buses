@@ -19,7 +19,7 @@
         error.classList.remove('hidden');
     }
 
-    require(['fastclick', 'handlebars', 'jquery', 'moment', 'underscore'], function(FastClick, Handlebars, $, moment, _) {
+    require(['fastclick', 'hammer', 'handlebars', 'jquery', 'moment', 'underscore'], function(FastClick, Hammer, Handlebars, $, moment, _) {
         $(function() {
             FastClick.attach(document.body);
 
@@ -38,6 +38,10 @@
 
             // Script
 
+            window.setTimeout(function() {
+                $('.progress').fadeIn();
+            }, 3000);
+            
             var loading = document.getElementById('loading');
             var error = document.getElementById('error');
 
@@ -113,6 +117,25 @@
                 event.preventDefault();
 
                 $(event.target).parents('.stop').children('.stop-arrivals').toggleClass('toggled');
+            });
+
+            var hammer = Hammer(document.body, {
+                drag_max_touches: 0,
+            });
+ 
+            hammer.on('drag', function(event) {
+                // If we're pinching, stop the page from scrolling
+                if (event.gesture.touches.length > 1) {
+                    event.gesture.preventDefault();
+                }
+            });
+
+            hammer.on('pinchin', function(event) {
+                $('.stop-arrivals').addClass('toggled');
+            });
+
+            hammer.on('pinchout', function(event) {
+                $('.stop-arrivals').removeClass('toggled');
             });
         });
     });
