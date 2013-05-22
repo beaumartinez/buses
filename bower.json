@@ -2,6 +2,7 @@
     "dependencies": {
         "bootstrap": "v2.3.2",
         "fastclick": "v0.6.7",
+        "hammerjs": "v1.0.5",
         "handlebars": "1.0.0-rc.4",
         "jquery": "2.0.0",
         "moment": "2.0.0",
