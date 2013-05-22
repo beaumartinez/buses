@@ -109,10 +109,10 @@
                 _error("Couldn't get location data." + " (" + geopositionError.message + ").");
             });
 
-            $('body').on('click', 'a[href=#toggle]', function(event) {
+            $('body').on('click', '.stop', function(event) {
                 event.preventDefault();
 
-                $(event.target).parents('.stop').toggleClass('toggled');
+                $(event.target).parents('.stop').children('.stop-arrivals').toggleClass('toggled');
             });
         });
     });

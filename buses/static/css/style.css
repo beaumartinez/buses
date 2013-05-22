@@ -1,16 +1,15 @@
 @import url('bootstrap.css');
 
 a, a:active, a:hover, a:visited {
-	tap-highlight-color: transparent;
-	-moz-tap-highlight-color: transparent;
-	-webkit-tap-highlight-color: transparent;
-
 	text-decoration: inherit;
 	color: #0088cc;
 }
 
 body {
 	font-size: 16px;
+	tap-highlight-color: transparent;
+	-moz-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: transparent;
 }
 
 h1 {
@@ -21,6 +20,7 @@ h1 {
 }
 
 h2 {
+	color: #0088cc;
 	font-size: 20px;
 	line-height: 1.2;
 	margin-top: 18px;
@@ -51,11 +51,15 @@ footer {
 	display: none;
 }
 
+.stop {
+	cursor: pointer;
+}
+
 .stop-arrivals {
 	margin-left: 0;
 	list-style: none;
 }
 
-.toggled .stop-arrivals {
+.toggled {
 	display: none;
 }
