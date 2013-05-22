@@ -107,7 +107,3 @@ def _parse_response(response, latitude, longitude):
     json_stops = json.dumps(parsed_stops)
 
     return json_stops
-
-
-if __name__ == '__main__':
-    print get_arrival_times(latitude=51.5292769, longitude=-0.1825763)

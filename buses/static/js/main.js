@@ -9,18 +9,19 @@
             underscore: {
                 exports: '_',
             },
-            livestamp: {
-                deps: ['jquery', 'moment',],
-                exports: 'livestamp',
-            },
         },
     });
 
-    require(['fastclick', 'handlebars', 'jquery', 'moment', 'underscore', 'livestamp'], function(FastClick, Handlebars, $, moment, _) {
+    function _error(message) {
+        error.innerHTML = message;
+
+        loading.classList.add('hidden');
+        error.classList.remove('hidden');
+    }
+
+    require(['fastclick', 'handlebars', 'jquery', 'moment', 'underscore'], function(FastClick, Handlebars, $, moment, _) {
         $(function() {
             FastClick.attach(document.body);
-
-            $.livestamp.interval(10);
 
             // Handlebars
 
@@ -42,18 +43,11 @@
 
             var content = document.getElementById('content');
 
-            var lastUpdated = document.getElementById('last-updated');
-            var lastUpdatedTimeago = document.getElementById('last-updated-timeago');
             var accuracy = document.getElementById('accuracy');
 
-            function _error(message) {
-                error.innerHTML = message;
+            loading.innerHTML = "Getting location data...";
 
-                loading.classList.add('hidden');
-                error.classList.remove('hidden');
-            }
-
-            navigator.geolocation.watchPosition(function(geoposition) {
+            navigator.geolocation.getCurrentPosition(function(geoposition) {
                 loading.innerHTML = "Loading bus arrival data...";
 
                 $.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
@@ -108,14 +102,8 @@
                             content.innerHTML += renderedTemplate;
                         });
 
-                        lastUpdated.parentNode.classList.remove('hidden');
-
-                        var now = moment();
-
-                        lastUpdated.innerHTML = now.format('HH:mm:ss');
-                        lastUpdatedTimeago.dataset.livestamp = now.unix();
-
                         accuracy.innerHTML = geoposition.coords.accuracy.toFixed(0);
+                        accuracy.parentNode.classList.remove('hidden');
                     }
                 }).fail(function(response) {
                     var errorMessage = (response.status === 502) ? "TFL services are down." : "Couldn't load bus arrival data.";
