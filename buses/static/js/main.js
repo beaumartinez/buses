@@ -15,7 +15,7 @@
     function _error(message) {
         error.innerHTML = message;
 
-        loading.classList.add('hidden');
+        loading.parentNode.classList.add('hidden');
         error.classList.remove('hidden');
     }
 
@@ -45,8 +45,6 @@
 
             var accuracy = document.getElementById('accuracy');
 
-            loading.innerHTML = "Getting location data...";
-
             navigator.geolocation.getCurrentPosition(function(geoposition) {
                 loading.innerHTML = "Loading bus arrival data...";
 
@@ -54,10 +52,7 @@
                     if (responseArrivals.length === 0) {
                         _error("No bus arrival data. There might not be any buses for a while. TFL services might also be down. Please try again later.");
                     } else {
-                        content.innerHTML = '';
-
                         var stopLookup = _.groupBy(responseArrivals, 'stopId');
-                        console.log(stopLookup);
 
                         var stopIds = Object.getOwnPropertyNames(stopLookup);
                         stopIds = stopIds.sort(function(a, b) {
@@ -67,8 +62,7 @@
                             return aExample.distance - bExample.distance;
                         });
 
-                        error.classList.add('hidden');
-                        loading.classList.add('hidden');
+                        loading.parentNode.classList.add('hidden');
 
                         stopIds.forEach(function(stopId) {
                             var arrivals = stopLookup[stopId];
@@ -111,8 +105,8 @@
 
                     _error(errorMessage);
                 });
-            }, function(error) {
-                _error("Couldn't get location data.");
+            }, function(geopositionError) {
+                _error("Couldn't get location data." + " (" + geopositionError.message + ").");
             });
 
             $('body').on('click', 'a[href=#toggle]', function(event) {
