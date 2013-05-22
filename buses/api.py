@@ -55,6 +55,12 @@ def get_arrival_times(latitude, longitude, radius=DEFAULT_RADIUS):
         if response.status_code == 200:
             status = 200
             parsed_response = _parse_response(response.text, latitude, longitude)
+        elif response.status_code == 416:
+            # TFL's services are "clever" and return HTTP 416 instead of an
+            # empty list when the location is invalid
+
+            status = 200
+            parsed_response = '[]'
         else:
             logging.warning('TFL error {} {}'.format(response.status_code, response.text))
 
