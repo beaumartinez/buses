@@ -39,8 +39,9 @@
             // Script
 
             window.setTimeout(function() {
-                $('.progress').fadeIn();
-            }, 3000);
+                var progress = document.querySelector('.progress');
+                progress.classList.add('unfaded');
+            }, 1500);
             
             var loading = document.getElementById('loading');
             var error = document.getElementById('error');

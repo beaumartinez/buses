@@ -47,6 +47,10 @@ footer {
 	margin-bottom: 12px;
 }
 
+.faded {
+	opacity: 0;
+}
+
 .hidden {
 	display: none;
 }
@@ -58,4 +62,9 @@ footer {
 .stop-arrivals {
 	margin-left: 0;
 	list-style: none;
+}
+
+.unfaded {
+	opacity: 1;
+	transition: opacity .25s ease-in-out;
 }
