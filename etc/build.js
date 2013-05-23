@@ -1,6 +1,6 @@
 {
-    baseUrl: 'buses/static/',
-    dir: 'buses/build/',
+    baseUrl: '../www/static/',
+    dir: '../www/build/',
 
     paths: {
         main: 'js/main',
@@ -20,7 +20,7 @@
         name: 'main',
     }],
 
-    mainConfigFile: 'buses/static/js/main.js',
+    mainConfigFile: '../www/static/js/main.js',
 
     removeCombined: true,
 
