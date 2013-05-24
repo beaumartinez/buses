@@ -11,6 +11,9 @@
     },
 
     "exportsOverride": {
+        "handlebars": {
+            "": "handlebars.js"
+        },
         "moment": {
             "": "moment.js"
         },
