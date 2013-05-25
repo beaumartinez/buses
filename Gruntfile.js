@@ -4,8 +4,8 @@ module.exports = function(grunt) {
     grunt.initConfig({
         bower: {
             install: {
-                cleanTargetDir: true
-            }
+                cleanTargetDir: true,
+            },
         },
         copy: {
             main: {
@@ -22,22 +22,65 @@ module.exports = function(grunt) {
                             } else {
                                 return destination + source; 
                             }
-                        }
+                        },
                     },
                     {
                         expand: true,
                         flatten: true, 
                         src: ['lib/**/*.css'],
                         dest: 'www/static/css/',
-                        filter: 'isFile'
+                        filter: 'isFile',
                     },
-                ]
-            }
-        }
+                ],
+            },
+            requirejs: {
+                files: [
+                    {
+                        src: 'www/static/js/require.js',
+                        dest: 'www/build/js/require.js',
+                    },
+                ],
+            },
+        },
+        concat: {
+            js: {
+                src: 'www/static/js/*.js',
+                dest: 'www/build/js/main.js',
+            },
+            css: {
+                src: 'www/static/css/*.css',
+                dest: 'www/build/css/style.css',
+            },
+        },
+        uglify: {
+            main: {
+                options: {
+                    mangle: true,
+                },
+                files: {
+                    'www/build/js/main.js': ['www/build/js/main.js'],
+                    'www/build/js/require.js': ['www/build/js/require.js'],
+                },
+            },
+        },
+        cssmin: {
+            main: {
+                options: {
+                    keepSpecialComments: 0,
+                },
+                files: {
+                    'www/build/css/style.css': ['www/build/css/style.css'],
+                },
+            },
+        },
     });
 
-    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', ['bower', 'copy']);
+    grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
+    grunt.registerTask('bower', ['bower', 'copy']);
 };

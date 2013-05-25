@@ -36,7 +36,7 @@ npm install -g bower grunt-cli requirejs
 (
     cd /vagrant
     npm install
-    grunt
+    grunt bower
 )
 
 r.js -o /vagrant/etc/build.js
