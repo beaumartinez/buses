@@ -31,15 +31,13 @@ service nginx restart
 
 # grunt and ting
 
-npm install -g bower grunt-cli requirejs
+npm install -g bower grunt-cli
 
 (
     cd /vagrant
     npm install
     grunt bower
 )
-
-r.js -o /vagrant/etc/build.js
 
 # upstart
 
