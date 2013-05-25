@@ -9,7 +9,7 @@ add-apt-repository -y ppa:chris-lea/node.js
 add-apt-repository -y ppa:nginx/stable
 apt-get update
 
-apt-get install -y nginx nodejs python python-pip
+apt-get install -y git nginx nodejs python python-pip
 
 # virtualenv
 
@@ -29,9 +29,16 @@ ln -s /etc/nginx/sites-available/development /etc/nginx/sites-enabled/developmen
 
 service nginx restart
 
-# r.js
+# grunt and ting
 
-npm install -g requirejs
+npm install -g bower grunt-cli requirejs
+
+(
+    cd /vagrant
+    npm install
+    grunt
+)
+
 r.js -o /vagrant/etc/build.js
 
 # upstart
