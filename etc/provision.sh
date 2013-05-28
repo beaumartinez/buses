@@ -36,7 +36,7 @@ npm install -g bower grunt-cli
 (
     cd /vagrant
     npm install
-    grunt bower
+    grunt bower-install
 )
 
 # upstart

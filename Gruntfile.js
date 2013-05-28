@@ -82,5 +82,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
-    grunt.registerTask('bower', ['bower', 'copy']);
+    grunt.registerTask('bower-install', ['bower', 'copy']);
 };
