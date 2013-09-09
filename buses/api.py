@@ -12,22 +12,13 @@ DEFAULT_RADIUS = 300
 
 
 def _create_url(latitude, longitude, radius):
-    latitude, longitude, radius = itertools.imap(str, (latitude, longitude, radius))
+    latitude = str(latitude)
+    longitude = str(longitude)
+    radius = str(radius)
 
     url = furl('http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1')
-
-    url.args['ReturnList'] = ','.join((
-        'DestinationText',
-        'EstimatedTime',
-        'Latitude',
-        'LineName',
-        'Longitude',
-        'StopID',
-        'StopPointIndicator',
-        'StopPointName',
-        'Towards',
-    ))
-    url.args['Circle'] = ','.join((latitude, longitude, radius))
+    url.args['ReturnList'] = 'DestinationText,EstimatedTime,Latitude,LineName,Longitude,StopID,StopPointIndicator,StopPointName,Towards'
+    url.args['Circle'] = '{},{},{}'.format(latitude, longitude, radius)
 
     url = str(url)
 
