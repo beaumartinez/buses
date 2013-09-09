@@ -103,7 +103,6 @@ def _parse_response(response, latitude, longitude):
         return stop
 
     parsed_stops = map(_distance, parsed_stops)
-
     json_stops = json.dumps(parsed_stops)
 
     return json_stops
