@@ -77,6 +77,7 @@ def _parse_response(response, latitude, longitude):
     parsed_stops = itertools.imap(json.loads, stops)
 
     def _list_to_dict(stop):
+        # These have a voodoo-like ordering, but it's spec'd
         parsed_stop = {
             'stopName': stop[1],
             'stopId': stop[2],
