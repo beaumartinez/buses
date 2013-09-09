@@ -43,11 +43,11 @@ def get_arrival_times(latitude, longitude, radius=DEFAULT_RADIUS):
     try:
         response = requests.get(url)
     except requests.exceptions.ConnectionError:
-        logging.warning('Couldn\'t connect to TFL\'s services')
+        logging.warning("Couldn't connect to TFL's services")
 
         status = 500
         parsed_response = {
-            'internal_error': 'Couldn\'t connect to TFL\'s services',
+            'internal_error': "Couldn't connect to TFL's services",
         }
 
         parsed_response = json.dumps(parsed_response)
