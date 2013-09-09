@@ -83,6 +83,8 @@ def _parse_response(response, latitude, longitude):
     # First line is a version string
     stops = lines[1:]
 
+    parsed_stops = itertools.imap(json.loads, stops)
+
     def _list_to_dict(stop):
         parsed_stop = {
             'stopName': stop[1],
@@ -101,13 +103,13 @@ def _parse_response(response, latitude, longitude):
 
         return parsed_stop
 
+    parsed_stops = itertools.imap(_list_to_dict, parsed_stops)
+
     def _distance(stop):
         stop['distance'] = haversine((latitude, longitude), (stop['latitude'], stop['longitude']))
 
         return stop
 
-    parsed_stops = itertools.imap(json.loads, stops)
-    parsed_stops = itertools.imap(_list_to_dict, parsed_stops)
     parsed_stops = map(_distance, parsed_stops)
 
     json_stops = json.dumps(parsed_stops)
