@@ -41,7 +41,7 @@
             window.setTimeout(function() {
                 var progress = document.querySelector('.progress');
                 progress.classList.add('unfaded');
-            }, 1500);
+            }, 2000);
             
             var loading = document.getElementById('loading');
             var error = document.getElementById('error');
