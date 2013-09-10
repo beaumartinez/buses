@@ -50,6 +50,8 @@
 
             var accuracy = document.getElementById('accuracy');
 
+            var collapseAll = document.getElementById('collapse-all');
+
             navigator.geolocation.getCurrentPosition(function(geoposition) {
                 loading.innerHTML = "Loading bus arrival data...";
 
@@ -104,6 +106,8 @@
 
                     accuracy.innerHTML = geoposition.coords.accuracy.toFixed(0);
                     accuracy.parentNode.classList.remove('hidden');
+
+                    collapseAll.classList.remove('hidden');
                 }).fail(function(response) {
                     var errorMessage = (response.status === 502) ? "TFL services are down." : "Couldn't load bus arrival data.";
                     errorMessage += " " + "Please try again later.";
@@ -137,6 +141,16 @@
 
             hammer.on('pinchout', function(event) {
                 $('.stop-arrivals').removeClass('hidden');
+            });
+
+            $('#collapse-all').click(function(event) {
+                event.preventDefault();
+
+                if ($('.stop-arrivals.hidden').length === $('.stop-arrivals').length) {
+                    $('.stop-arrivals.hidden').removeClass('hidden');
+                } else {
+                    $('.stop-arrivals').addClass('hidden');
+                }
             });
         });
     });
