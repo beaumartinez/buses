@@ -44,7 +44,7 @@ module.exports = function(grunt) {
         },
         concat: {
             js: {
-                src: 'www/static/js/*.js',
+                src: ['www/static/js/*.js', '!**/bootstrap.js'],
                 dest: 'www/build/js/main.js',
             },
             css: {
