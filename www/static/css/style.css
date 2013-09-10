@@ -47,6 +47,22 @@ footer {
 	margin-bottom: 12px;
 }
 
+.btn:active,
+.btn.active {
+	box-shadow: inherit;
+}
+
+.btn:hover,
+.btn:focus {
+	background-color: inherit;
+}
+
+.btn-default:hover,
+.btn-default:focus {
+	/* Can't use inherit here */
+	border-color: #cccccc;
+}
+
 .faded {
 	opacity: 0;
 }
@@ -62,20 +78,4 @@ footer {
 .unfaded {
 	opacity: 1;
 	transition: opacity .25s ease-in-out;
-}
-
-.btn:active,
-.btn.active {
-	box-shadow: inherit;
-}
-
-.btn:hover,
-.btn:focus {
-	background-color: inherit;
-}
-
-.btn-default:hover,
-.btn-default:focus {
-	/* Can't use inherit here */
-	border-color: #cccccc;
 }
