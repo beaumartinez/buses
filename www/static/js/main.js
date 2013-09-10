@@ -55,7 +55,7 @@
 
                 $.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
                     if (responseArrivals.length === 0) {
-                        _error("No bus arrival data.<span class=break>There might not be buses in your area. TFL services might be down.</span><span class=break>Please try again later.</span>");
+                        _error("No bus arrival data.<p>There might not be buses in your area. TFL services might also be down.");
                     } else {
                         var stopLookup = _.groupBy(responseArrivals, 'stopId');
 
