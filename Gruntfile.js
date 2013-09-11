@@ -31,16 +31,8 @@ module.exports = function(grunt) {
                         dest: 'www/static/css/',
                         filter: 'isFile',
                     },
-                ],
-            },
-            requirejs: {
-                files: [
-                    {
-                        src: 'www/static/js/require.js',
-                        dest: 'www/build/js/require.js',
-                    },
-                ],
-            },
+                ]
+            }
         },
         concat: {
             js: {
@@ -58,8 +50,7 @@ module.exports = function(grunt) {
                     mangle: true,
                 },
                 files: {
-                    'www/build/js/main.js': ['www/build/js/main.js'],
-                    'www/build/js/require.js': ['www/build/js/require.js'],
+                    'www/build/js/*.js': ['www/build/js/main.js'],
                 },
             },
         },
@@ -69,7 +60,7 @@ module.exports = function(grunt) {
                     keepSpecialComments: 0,
                 },
                 files: {
-                    'www/build/css/style.css': ['www/build/css/style.css'],
+                    'www/build/css/*.css': ['www/build/css/style.css'],
                 },
             },
         },
