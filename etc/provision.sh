@@ -44,6 +44,7 @@ npm install -g bower grunt-cli
 # We're symlinking the Upstart job. Upstart doesn't work well with symlinks, so
 # we have to call "initctl reload-configuration" explicitly for it to recognize
 # it
-ln -s /vagrant/etc/upstart.conf /etc/init/buses.conf
+ln -s /vagrant/etc/buses.conf /etc/init/buses.conf
+ln -s /vagrant/etc/grunt-watch.conf /etc/init/grunt-watch.conf
 initctl reload-configuration
 service buses start
