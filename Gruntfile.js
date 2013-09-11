@@ -64,6 +64,22 @@ module.exports = function(grunt) {
                 },
             },
         },
+        watch: {
+            js: {
+                files: ['www/static/js/*.js', '!**/bootstrap.js'],
+                tasks: ['concat:js', 'uglify'],
+                options: {
+                    spawn: false,
+                },
+            },
+            css: {
+                files: ['www/static/css/*.css'],
+                tasks: ['concat:css', 'cssmin'],
+                options: {
+                    spawn: false,
+                },
+            },
+        },
     });
 
     grunt.loadNpmTasks('grunt-bower-task');
@@ -71,6 +87,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
     grunt.registerTask('bower-install', ['bower', 'copy']);
