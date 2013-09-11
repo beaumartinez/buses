@@ -90,12 +90,12 @@
 
                         content.innerHTML += renderedTemplate;
                     });
+
+                    collapseAll.classList.remove('hidden');
                 }
 
                 accuracy.innerHTML = geoposition.coords.accuracy.toFixed(0);
                 accuracy.parentNode.classList.remove('hidden');
-
-                collapseAll.classList.remove('hidden');
             }).fail(function(response) {
                 var errorMessage = (response.status === 502) ? "TFL services are down." : "Couldn't load bus arrival data.";
                 errorMessage += " " + "Please try again later.";
