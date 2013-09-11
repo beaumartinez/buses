@@ -6,7 +6,6 @@
         "handlebars": "1.0.0-rc.4",
         "jquery": "2.0.0",
         "moment": "2.0.0",
-        "requirejs": "2.1.6",
         "underscore": "1.4.4"
     },
 
@@ -16,9 +15,6 @@
         },
         "moment": {
             "": "moment.js"
-        },
-        "requirejs": {
-            "": "require.js"
         },
         "underscore": {
             "": "underscore.js"
