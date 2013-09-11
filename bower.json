@@ -1,4 +1,5 @@
 {
+  "name": "buses",
   "dependencies": {
     "bootstrap": "v3.0.0",
     "fastclick": "v0.6.7",
