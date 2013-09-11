@@ -50,7 +50,7 @@ module.exports = function(grunt) {
                     mangle: true,
                 },
                 files: {
-                    'www/build/js/*.js': ['www/build/js/main.js'],
+                    'www/build/js/main.js': ['www/build/js/*.js'],
                 },
             },
         },
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
                     keepSpecialComments: 0,
                 },
                 files: {
-                    'www/build/css/*.css': ['www/build/css/style.css'],
+                    'www/build/css/style.css': ['www/build/css/*.css'],
                 },
             },
         },
