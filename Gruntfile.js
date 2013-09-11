@@ -33,7 +33,7 @@ module.exports = function(grunt) {
                     },
                 ]
             },
-            main: {
+            js: {
                 files: [
                     {
                         expand: true,
@@ -42,6 +42,10 @@ module.exports = function(grunt) {
                         dest: 'www/prebuild/js/',
                         filter: 'isFile',
                     },
+                ]
+            },
+            css: {
+                files: [
                     {
                         expand: true,
                         flatten: true, 
@@ -73,7 +77,7 @@ module.exports = function(grunt) {
             },
         },
         cssmin: {
-            main: {
+            css: {
                 options: {
                     keepSpecialComments: 0,
                 },
@@ -85,14 +89,14 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['www/static/js/*.js'],
-                tasks: ['concat:js', 'uglify'],
+                tasks: ['copy:js', 'concat:js', 'uglify'],
                 options: {
                     spawn: false,
                 },
             },
             css: {
                 files: ['www/static/css/*.css'],
-                tasks: ['concat:css', 'cssmin'],
+                tasks: ['copy:css', 'concat:css', 'cssmin'],
                 options: {
                     spawn: false,
                 },
@@ -107,6 +111,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('default', ['copy:main', 'concat', 'uglify', 'cssmin']);
-    grunt.registerTask('bower-install', ['bower', 'copy:bower']);
+    grunt.registerTask('default', ['copy', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('bower-install', ['bower']);
 };
