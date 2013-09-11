@@ -1,23 +1,22 @@
 {
-    "dependencies": {
-        "bootstrap": "v3.0.0",
-        "fastclick": "v0.6.7",
-        "hammerjs": "v1.0.5",
-        "handlebars": "1.0.0-rc.4",
-        "jquery": "2.0.0",
-        "moment": "2.0.0",
-        "underscore": "1.4.4"
+  "dependencies": {
+    "bootstrap": "v3.0.0",
+    "fastclick": "v0.6.7",
+    "hammerjs": "v1.0.5",
+    "handlebars": "1.0.0-rc.4",
+    "jquery": "2.0.0",
+    "moment": "2.0.0",
+    "lodash": "~1.3.1"
+  },
+  "exportsOverride": {
+    "handlebars": {
+      "": "handlebars.js"
     },
-
-    "exportsOverride": {
-        "handlebars": {
-            "": "handlebars.js"
-        },
-        "moment": {
-            "": "moment.js"
-        },
-        "underscore": {
-            "": "underscore.js"
-        }
+    "moment": {
+      "": "moment.js"
+    },
+    "underscore": {
+      "": "underscore.js"
     }
+  }
 }
