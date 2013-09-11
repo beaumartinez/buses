@@ -27,8 +27,8 @@
         // Script
 
         window.setTimeout(function() {
-            var progress = document.querySelector('.progress');
-            progress.classList.add('unfaded');
+            var progress = $('.progress');
+            progress.addClass('unfaded');
         }, 2000);
         
         var loading = document.getElementById('loading');
