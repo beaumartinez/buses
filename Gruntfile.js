@@ -8,13 +8,13 @@ module.exports = function(grunt) {
             },
         },
         copy: {
-            main: {
+            bower: {
                 files: [
                     {
                         expand: true,
                         flatten: true, 
                         src: ['lib/**/*.js'],
-                        dest: 'www/static/js/',
+                        dest: 'www/prebuild/js/',
                         filter: 'isFile',
                         rename: function(destination, source) {
                             if (source.indexOf('hammer') !== -1) {
@@ -28,7 +28,25 @@ module.exports = function(grunt) {
                         expand: true,
                         flatten: true, 
                         src: ['lib/**/*.css'],
-                        dest: 'www/static/css/',
+                        dest: 'www/prebuild/css/',
+                        filter: 'isFile',
+                    },
+                ]
+            },
+            main: {
+                files: [
+                    {
+                        expand: true,
+                        flatten: true, 
+                        src: ['www/static/js/*.js'],
+                        dest: 'www/prebuild/js/',
+                        filter: 'isFile',
+                    },
+                    {
+                        expand: true,
+                        flatten: true, 
+                        src: ['www/static/css/*.css'],
+                        dest: 'www/prebuild/css/',
                         filter: 'isFile',
                     },
                 ]
@@ -36,12 +54,12 @@ module.exports = function(grunt) {
         },
         concat: {
             js: {
-                src: ['www/static/js/*.js', '!**/bootstrap.js'],
-                dest: 'www/build/js/main.js',
+                src: ['www/prebuild/js/*.js', '!**/bootstrap.js'],
+                dest: 'www/prebuild/js/main.js',
             },
             css: {
-                src: 'www/static/css/*.css',
-                dest: 'www/build/css/style.css',
+                src: 'www/prebuild/css/*.css',
+                dest: 'www/prebuild/css/style.css',
             },
         },
         uglify: {
@@ -50,7 +68,7 @@ module.exports = function(grunt) {
                     mangle: true,
                 },
                 files: {
-                    'www/build/js/main.js': ['www/build/js/*.js'],
+                    'www/build/js/main.js': ['www/prebuild/js/main.js'],
                 },
             },
         },
@@ -60,13 +78,13 @@ module.exports = function(grunt) {
                     keepSpecialComments: 0,
                 },
                 files: {
-                    'www/build/css/style.css': ['www/build/css/*.css'],
+                    'www/build/css/style.css': ['www/prebuild/css/style.css'],
                 },
             },
         },
         watch: {
             js: {
-                files: ['www/static/js/*.js', '!**/bootstrap.js'],
+                files: ['www/static/js/*.js'],
                 tasks: ['concat:js', 'uglify'],
                 options: {
                     spawn: false,
@@ -89,6 +107,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
-    grunt.registerTask('bower-install', ['bower', 'copy']);
+    grunt.registerTask('default', ['copy:main', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('bower-install', ['bower', 'copy:bower']);
 };
