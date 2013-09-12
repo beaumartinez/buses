@@ -5,6 +5,7 @@ if [[ -n "$1" ]]; then
 fi
 
 (
-    cd ..
+    cd ../..
+
     gunicorn buses.app:app --workers=4 $HOST_ARGUMENT
 )

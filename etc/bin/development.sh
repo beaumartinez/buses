@@ -5,7 +5,7 @@ if [[ -n "$@" ]]; then
 fi
 
 (
-    cd ..
+    cd ../..
 
     python -m buses.app_debug $HOST_ARGUMENT
 )
