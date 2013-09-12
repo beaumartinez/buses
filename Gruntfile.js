@@ -7,6 +7,7 @@ module.exports = function(grunt) {
                 cleanTargetDir: true,
             },
         },
+
         copy: {
             bower: {
                 files: [
@@ -56,6 +57,7 @@ module.exports = function(grunt) {
                 ]
             }
         },
+
         concat: {
             js: {
                 src: ['www/prebuild/js/*.js', '!**/bootstrap.js'],
@@ -66,6 +68,7 @@ module.exports = function(grunt) {
                 dest: 'www/prebuild/css/style.css',
             },
         },
+
         uglify: {
             js: {
                 options: {
@@ -76,6 +79,7 @@ module.exports = function(grunt) {
                 },
             },
         },
+
         cssmin: {
             css: {
                 options: {
@@ -86,6 +90,7 @@ module.exports = function(grunt) {
                 },
             },
         },
+
         watch: {
             js: {
                 files: ['www/static/js/*.js'],
