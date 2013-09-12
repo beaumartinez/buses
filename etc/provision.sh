@@ -21,11 +21,8 @@ pip install -r /vagrant/etc/requirements.txt
 # nginx
 
 rm /etc/nginx/sites-enabled/default
-
-ln -s /vagrant/etc/nginx-development.conf /etc/nginx/sites-available/development
-ln -s /vagrant/etc/nginx-production.conf /etc/nginx/sites-available/production
-
-ln -s /etc/nginx/sites-available/development /etc/nginx/sites-enabled/development
+ln -s /vagrant/etc/nginx.conf /etc/nginx/sites-available/buses
+ln -s /etc/nginx/sites-available/buses /etc/nginx/sites-enabled/buses
 
 service nginx restart
 
