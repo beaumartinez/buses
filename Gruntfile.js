@@ -89,14 +89,14 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['www/static/js/*.js'],
-                tasks: ['copy:js', 'concat:js', 'uglify'],
+                tasks: ['copy-js'],
                 options: {
                     spawn: false,
                 },
             },
             css: {
                 files: ['www/static/css/*.css'],
-                tasks: ['copy:css', 'concat:css', 'cssmin'],
+                tasks: ['copy-css'],
                 options: {
                     spawn: false,
                 },
@@ -111,6 +111,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('default', ['copy', 'concat', 'uglify', 'cssmin']);
-    grunt.registerTask('bower-install', ['bower']);
+    grunt.registerTask('copy-css', ['copy:css', 'concat:css', 'cssmin']);
+    grunt.registerTask('copy-js', ['copy:js', 'concat:js', 'uglify']);
+    grunt.registerTask('default', ['bower', 'copy', 'concat', 'uglify', 'cssmin']);
 };
