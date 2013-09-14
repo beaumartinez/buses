@@ -27,8 +27,8 @@
         // Script
 
         window.setTimeout(function() {
-            var progress = $('.progress');
-            progress.addClass('unfaded');
+            var spinner = $('.spinner');
+            spinner.removeClass('hidden');
         }, 2000);
         
         var loading = document.getElementById('loading');
