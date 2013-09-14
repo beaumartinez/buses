@@ -2,6 +2,12 @@
 
 module.exports = function(grunt) {
     grunt.initConfig({
+        clean: {
+            bower: ['lib'], 
+            prebuild: ['www/prebuild'], 
+            build: ['www/build'],
+        },
+
         bower: {
             install: {
                 cleanTargetDir: true,
@@ -121,6 +127,7 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -129,5 +136,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('copy-css', ['copy:css', 'concat:css', 'cssmin']);
     grunt.registerTask('copy-js', ['copy:js', 'concat:js', 'uglify']);
-    grunt.registerTask('default', ['bower', 'copy', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['clean', 'bower', 'copy', 'concat', 'uglify', 'cssmin']);
 };
