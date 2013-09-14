@@ -40,7 +40,7 @@
 
         var collapseAll = document.getElementById('collapse-all');
 
-        navigator.geolocation.getCurrentPosition(function(geoposition) {
+        navigator.geolocation.watchPosition(function(geoposition) {
             loading.innerHTML = "Loading bus arrival data...";
 
             $.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
