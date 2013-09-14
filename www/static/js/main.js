@@ -47,6 +47,8 @@
                 if (responseArrivals.length === 0) {
                     _error("No bus arrival data.<p>There might not be buses in your area. TFL services might also be down.");
                 } else {
+                    $(content).empty();
+
                     var stopLookup = _.groupBy(responseArrivals, 'stopId');
 
                     var stopIds = Object.getOwnPropertyNames(stopLookup);
