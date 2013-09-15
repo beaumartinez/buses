@@ -1,14 +1,14 @@
 (function() {
     'use strict';
 
-    function _error(message) {
-        error.innerHTML = message;
-
-        loading.parentNode.classList.add('hidden');
-        error.classList.remove('hidden');
-    }
-
     $(function() {
+        function _error(message) {
+            error.innerHTML = message;
+
+            loading.parentNode.classList.add('hidden');
+            error.classList.remove('hidden');
+        }
+
         FastClick.attach(document.body);
 
         // Handlebars
