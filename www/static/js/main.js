@@ -120,7 +120,7 @@
 
         hammer.on('drag', function(event) {
             // If we're pinching, stop the page from scrolling
-            if (event.gesture.touches.length == 2) {
+            if (event.gesture.touches.length === 2) {
                 event.gesture.preventDefault();
             }
         });
