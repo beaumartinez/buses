@@ -77,7 +77,15 @@ module.exports = function(grunt) {
 
         concat: {
             js: {
-                src: ['www/prebuild/js/*.js', '!**/bootstrap.js'],
+                // Drop bootstrap.js, include main.js and ga.js at the end
+                src: [
+                    'www/prebuild/js/*.js', 
+                    '!**/bootstrap.js', 
+                    '!**/main.js',
+                    '**/main.js',
+                    '!**/ga.js',
+                    '**/ga.js',
+                ],
                 dest: 'www/prebuild/js/main.js',
             },
             css: {
