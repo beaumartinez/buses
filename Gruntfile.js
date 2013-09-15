@@ -8,12 +8,6 @@ module.exports = function(grunt) {
             build: ['www/build'],
         },
 
-        bower: {
-            install: {
-                cleanTargetDir: true,
-            },
-        },
-
         copy: {
             bower: {
                 files: [
