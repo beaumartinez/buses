@@ -3,8 +3,8 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         clean: {
-            pre: ['lib', 'www/prebuild', 'www/build'], 
-            post: ['lib', 'www/prebuild'], 
+            pre: ['lib', 'prebuild', 'build'], 
+            post: ['lib', 'prebuild'], 
         },
 
         bower: {
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                         expand: true,
                         flatten: true, 
                         src: ['lib/**/*.js', '!**/bootstrap.js'],
-                        dest: 'www/prebuild/js/',
+                        dest: 'prebuild/js/',
                         filter: 'isFile',
                         rename: function(destination, source) {
                             if (source.indexOf('hammer') !== -1) {
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
                         expand: true,
                         flatten: true, 
                         src: ['lib/**/*.css'],
-                        dest: 'www/prebuild/css/',
+                        dest: 'prebuild/css/',
                         filter: 'isFile',
                     },
                 ],
@@ -46,8 +46,8 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         flatten: true, 
-                        src: ['www/static/js/*.js'],
-                        dest: 'www/prebuild/js/',
+                        src: ['www/js/*.js'],
+                        dest: 'prebuild/js/',
                         filter: 'isFile',
                     },
                 ],
@@ -57,8 +57,8 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         flatten: true, 
-                        src: ['www/static/css/*.css'],
-                        dest: 'www/prebuild/css/',
+                        src: ['www/css/*.css'],
+                        dest: 'prebuild/css/',
                         filter: 'isFile',
                     },
                 ],
@@ -68,8 +68,8 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         flatten: true, 
-                        src: ['www/static/images/*'],
-                        dest: 'www/build/images/',
+                        src: ['www/images/*'],
+                        dest: 'build/images/',
                         filter: 'isFile',
                     },
                 ],
@@ -80,22 +80,22 @@ module.exports = function(grunt) {
             js: {
                 // Include main.js and ga.js at the end
                 src: [
-                    'www/prebuild/js/*.js', 
+                    'prebuild/js/*.js', 
                     '!**/main.js',
                     '**/main.js',
                     '!**/ga.js',
                     '**/ga.js',
                 ],
-                dest: 'www/prebuild/js/main.js',
+                dest: 'prebuild/js/main.js',
             },
             css: {
                 // Include style.css at the end
                 src: [
-                    'www/prebuild/css/*.css',
+                    'prebuild/css/*.css',
                     '!**/style.css',
                     '**/style.css',
                 ],
-                dest: 'www/prebuild/css/style.css',
+                dest: 'prebuild/css/style.css',
             },
         },
 
@@ -105,7 +105,7 @@ module.exports = function(grunt) {
                     wrap: true,
                 },
                 files: {
-                    'www/build/js/main.js': ['www/prebuild/js/main.js'],
+                    'build/js/main.js': ['prebuild/js/main.js'],
                 },
             },
         },
@@ -116,21 +116,21 @@ module.exports = function(grunt) {
                     keepSpecialComments: 0,
                 },
                 files: {
-                    'www/build/css/style.css': ['www/prebuild/css/style.css'],
+                    'build/css/style.css': ['prebuild/css/style.css'],
                 },
             },
         },
 
         watch: {
             js: {
-                files: ['www/static/js/*.js'],
+                files: ['www/js/*.js'],
                 tasks: ['copy-js'],
                 options: {
                     spawn: false,
                 },
             },
             css: {
-                files: ['www/static/css/*.css'],
+                files: ['www/css/*.css'],
                 tasks: ['copy-css'],
                 options: {
                     spawn: false,
