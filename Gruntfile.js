@@ -97,10 +97,10 @@ module.exports = function(grunt) {
                 // Include main.js and ga.js at the end
                 src: [
                     'prebuild/js/*.js', 
-                    '!**/main.js',
-                    '**/main.js',
-                    '!**/ga.js',
-                    '**/ga.js',
+                    '!prebuild/js/main.js',
+                    'prebuild/js/main.js',
+                    '!prebuild/js/ga.js',
+                    'prebuild/js/ga.js',
                 ],
                 dest: 'prebuild/js/main.js',
             },
