@@ -3,9 +3,8 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         clean: {
-            bower: ['lib'], 
-            prebuild: ['www/prebuild'], 
-            build: ['www/build'],
+            pre: ['lib', 'www/prebuild', 'www/build'], 
+            post: ['lib', 'www/prebuild'], 
         },
 
         bower: {
@@ -18,7 +17,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         flatten: true, 
-                        src: ['lib/**/*.js'],
+                        src: ['lib/**/*.js', '!**/bootstrap.js'],
                         dest: 'www/prebuild/js/',
                         filter: 'isFile',
                         rename: function(destination, source) {
@@ -79,10 +78,9 @@ module.exports = function(grunt) {
 
         concat: {
             js: {
-                // Drop bootstrap.js, include main.js and ga.js at the end
+                // Include main.js and ga.js at the end
                 src: [
                     'www/prebuild/js/*.js', 
-                    '!**/bootstrap.js', 
                     '!**/main.js',
                     '**/main.js',
                     '!**/ga.js',
@@ -91,7 +89,12 @@ module.exports = function(grunt) {
                 dest: 'www/prebuild/js/main.js',
             },
             css: {
-                src: 'www/prebuild/css/*.css',
+                // Include style.css at the end
+                src: [
+                    'www/prebuild/css/*.css',
+                    '!**/style.css',
+                    '**/style.css',
+                ],
                 dest: 'www/prebuild/css/style.css',
             },
         },
@@ -146,5 +149,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('copy-css', ['copy:css', 'concat:css', 'cssmin']);
     grunt.registerTask('copy-js', ['copy:js', 'concat:js', 'uglify']);
-    grunt.registerTask('default', ['clean', 'bower', 'copy', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['clean:pre', 'bower', 'copy', 'concat', 'uglify', 'cssmin', 'clean:post']);
 };
