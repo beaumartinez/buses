@@ -90,6 +90,8 @@ module.exports = function(grunt) {
             js: {
                 options: {
                     mangle: true,
+                    compress: true,
+                    wrap: true,
                 },
                 files: {
                     'www/build/js/main.js': ['www/prebuild/js/main.js'],
