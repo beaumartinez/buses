@@ -125,11 +125,11 @@
             }
         });
 
-        hammer.on('pinchin', function(event) {
+        hammer.on('pinchin', function() {
             $('.stop-arrivals').addClass('hidden');
         });
 
-        hammer.on('pinchout', function(event) {
+        hammer.on('pinchout', function() {
             $('.stop-arrivals').removeClass('hidden');
         });
 
