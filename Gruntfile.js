@@ -38,7 +38,7 @@ module.exports = function(grunt) {
                         dest: 'www/prebuild/css/',
                         filter: 'isFile',
                     },
-                ]
+                ],
             },
             js: {
                 files: [
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
                         dest: 'www/prebuild/js/',
                         filter: 'isFile',
                     },
-                ]
+                ],
             },
             css: {
                 files: [
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
                         dest: 'www/prebuild/css/',
                         filter: 'isFile',
                     },
-                ]
+                ],
             },
             images: {
                 files: [
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
                         dest: 'www/build/images/',
                         filter: 'isFile',
                     },
-                ]
+                ],
             }
         },
 
