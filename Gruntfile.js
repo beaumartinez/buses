@@ -11,6 +11,22 @@ module.exports = function(grunt) {
             install: {},
         },
 
+        htmlmin: {
+            html: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeAttributeQuotes: true,
+                    removeOptionalTags: true,
+                },
+
+                files: {
+                    'build/html/index.html': 'www/html/index.html',
+                },
+            },
+        },
+
         copy: {
             bower: {
                 files: [
@@ -73,7 +89,7 @@ module.exports = function(grunt) {
                         filter: 'isFile',
                     },
                 ],
-            }
+            },
         },
 
         concat: {
@@ -144,10 +160,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('copy-css', ['copy:css', 'concat:css', 'cssmin']);
     grunt.registerTask('copy-js', ['copy:js', 'concat:js', 'uglify']);
-    grunt.registerTask('default', ['clean:pre', 'bower', 'copy', 'concat', 'uglify', 'cssmin', 'clean:post']);
+    grunt.registerTask('default', ['clean:pre', 'bower', 'htmlmin', 'copy', 'concat', 'uglify', 'cssmin', 'clean:post']);
 };
