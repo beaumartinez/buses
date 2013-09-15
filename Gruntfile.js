@@ -8,6 +8,10 @@ module.exports = function(grunt) {
             build: ['www/build'],
         },
 
+        bower: {
+            install: {},
+        },
+
         copy: {
             bower: {
                 files: [
