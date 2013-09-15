@@ -89,7 +89,14 @@ module.exports = function(grunt) {
         uglify: {
             js: {
                 options: {
+                    sourceMap: 'www/build/js/source-map.js',
+                    sourceMappingURL: '/static/js/source-map.js',
+                    sourceMapPrefix: 3,
+                    sourceMapRoot: 'http://127.0.0.1:8080/source-maps/js/',
+                    
+
                     mangle: true,
+                    compress: true,
                 },
                 files: {
                     'www/build/js/main.js': ['www/prebuild/js/main.js'],
