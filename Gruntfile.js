@@ -26,9 +26,13 @@ module.exports = function(grunt) {
                         rename: function(destination, source) {
                             if (source.indexOf('hammer') !== -1) {
                                 return destination + 'hammer.js';
-                            } else {
-                                return destination + source; 
                             }
+                            
+                            if (source.indexOf('lodash') !== -1) {
+                                return destination + 'lodash.js';
+                            }
+
+                            return destination + source; 
                         },
                     },
                     {
