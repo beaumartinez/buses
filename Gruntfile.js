@@ -163,5 +163,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('copy-css', ['copy:css', 'concat:css', 'cssmin']);
     grunt.registerTask('copy-js', ['copy:js', 'concat:js', 'uglify']);
-    grunt.registerTask('default', ['clean:pre', 'bower', 'htmlmin', 'copy', 'concat', 'uglify', 'cssmin', 'clean:post']);
+    grunt.registerTask('default', ['clean:pre', 'bower', 'htmlmin', 'copy', 'concat', 'uglify', 'cssmin']);
 };
