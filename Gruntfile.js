@@ -117,9 +117,6 @@ module.exports = function(grunt) {
 
         uglify: {
             js: {
-                options: {
-                    wrap: true,
-                },
                 files: {
                     'build/js/main.js': ['prebuild/js/main.js'],
                 },
