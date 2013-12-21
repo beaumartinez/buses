@@ -4,6 +4,11 @@
     $(function() {
         navigator.geolocation.watchPosition(doShit, doShitError);
 
+        window.setTimeout(function() {
+            var spinner = $('.spinner');
+            spinner.removeClass('hidden');
+        }, 2000);
+
         function _error(message) {
             error.innerHTML = message;
 
@@ -27,11 +32,6 @@
         stopTemplate = Handlebars.compile(stopTemplate);
 
         // Script
-
-        window.setTimeout(function() {
-            var spinner = $('.spinner');
-            spinner.removeClass('hidden');
-        }, 2000);
         
         var loading = document.getElementById('loading');
         var error = document.getElementById('error');
