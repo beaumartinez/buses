@@ -1,3 +1,5 @@
+set +e
+
 # apt-get
 
 apt-get update
