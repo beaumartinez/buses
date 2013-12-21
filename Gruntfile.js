@@ -5,6 +5,10 @@ module.exports = function(grunt) {
         clean: {
             pre: ['lib', 'prebuild', 'build'], 
             post: ['lib', 'prebuild'], 
+
+            css: ['prebuild/*.css'],
+            js: ['prebuild/*.js'],
+            html: ['prebuild/*.html'],
         },
 
         bower: {
@@ -161,7 +165,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('copy-css', ['copy:css', 'concat:css', 'cssmin']);
-    grunt.registerTask('copy-js', ['copy:js', 'concat:js', 'uglify']);
+    grunt.registerTask('copy-css', ['clean:css', 'copy:css', 'concat:css', 'cssmin']);
+    grunt.registerTask('copy-js', ['clean:js', 'copy:js', 'concat:js', 'uglify']);
     grunt.registerTask('default', ['clean:pre', 'bower', 'htmlmin', 'copy', 'concat', 'uglify', 'cssmin']);
 };
