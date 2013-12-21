@@ -2,6 +2,8 @@
     'use strict';
 
     $(function() {
+        navigator.geolocation.watchPosition(doShit, doShitError);
+
         function _error(message) {
             error.innerHTML = message;
 
@@ -40,7 +42,7 @@
 
         var collapseAll = document.getElementById('collapse-all');
 
-        navigator.geolocation.watchPosition(function(geoposition) {
+        function doShit(geoposition) {
             loading.innerHTML = "Loading bus arrival data...";
 
             $.ajax('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').done(function(responseArrivals) {
@@ -104,9 +106,11 @@
 
                 _error(errorMessage);
             });
-        }, function(geopositionError) {
+        }
+        
+        function doShitError(geopositionError) {
             _error("Couldn't get location data." + " (" + geopositionError.message + ").");
-        });
+        }
 
         $('body').on('click', '.stop', function(event) {
             event.preventDefault();
