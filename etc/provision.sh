@@ -42,10 +42,7 @@ npm install -g bower grunt-cli
 # we have to call "initctl reload-configuration" explicitly for it to recognize
 # it
 
-ln -s /vagrant/etc/upstart/buses.conf /etc/init/buses.conf
-ln -s /vagrant/etc/upstart/grunt-watch.conf /etc/init/grunt-watch.conf
-
+ln -s /vagrant/etc/upstart.conf /etc/init/buses.conf
 initctl reload-configuration
 
 service buses start
-service grunt-watch start
