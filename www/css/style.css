@@ -65,13 +65,55 @@ footer {
 	display: none;
 }
 
-.spinner {
-	background-image: url('/static/images/spinner.gif');
-	width: 32px;
-	height: 32px;
-}
-
 .stop {
 	cursor: pointer;
 }
 
+/* Spinner things */
+
+.spinner {
+	height: 40px;
+	width: 40px;
+}
+
+.double-bounce1,
+.double-bounce2 {
+    background-color: #333;
+    border-radius: 50%;
+    height: 40px;
+    opacity: 0.6;
+    position: absolute;
+    width: 40px;
+    
+    animation: bounce 2.0s infinite ease-in-out;
+    -webkit-animation: bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+    animation-delay: -1.0s;
+    -webkit-animation-delay: -1.0s;
+}
+
+@keyframes bounce {
+    0%,
+	100% { 
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+    
+    50% { 
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}
+
+@-webkit-keyframes bounce {
+    0%,
+	100% {
+		-webkit-transform: scale(0.0)
+    }
+
+    50% {
+        -webkit-transform: scale(1.0)
+    }
+}
