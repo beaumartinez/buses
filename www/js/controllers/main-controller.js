@@ -5,7 +5,7 @@
         $scope.loading = 'Getting your location...';
 
         navigator.geolocation.watchPosition(function(geoposition) {
-        $scope.loading = 'Getting arrivals...';
+            $scope.loading = 'Getting arrivals...';
 
             $http.get('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').success(function(allArrivals) {
                 // allArrivals is an array of all arrivals, ungrouped by bus stop and unsorted.
@@ -16,33 +16,7 @@
                 if (allArrivals.length === 0) {
                     $scope.error = "No bus arrival data. There might not be buses in your area. TFL services might also be down.";
                 } else {
-                    // Group by bus stop
-
-                    var stopLookup = _.groupBy(allArrivals, 'stopId');
-                    var stopIds = Object.getOwnPropertyNames(stopLookup);
-
-                    var stops = [];
-
-                    // Process each stop
-
-                    stopIds.forEach(function(stopId) {
-                        var stopArrivals = stopLookup[stopId];
-                        stopArrivals = _.sortBy(stopArrivals, 'eta');
-
-                        var exampleArrival = stopArrivals[0];
-
-                        // Add stop to stops
-                        stops.push({
-                            stopName: exampleArrival.stopName,
-                            stopCode: exampleArrival.stopCode,
-                            towards: exampleArrival.towards,
-                            distance: exampleArrival.distance,
-
-                            arrivals: stopArrivals,
-                        });
-                    });
-
-                    $scope.stops = _.sortBy(stops, 'distance');
+                    $scope.allArrivals = allArrivals;
                 }
 
                 $scope.accuracy = geoposition.coords.accuracy.toFixed(0);
