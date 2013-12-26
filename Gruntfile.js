@@ -67,7 +67,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         flatten: true, 
-                        src: ['www/js/*.js'],
+                        src: ['www/js/*.js', 'www/js/**/*.js'],
                         dest: 'prebuild/js/',
                         filter: 'isFile',
                     },
@@ -103,8 +103,8 @@ module.exports = function(grunt) {
                 // Include controllers just before them
                 src: [
                     'prebuild/js/*.js', 
-                    '!prebuild/*Controller.js',
-                    'prebuild/*Controller.js',
+                    '!prebuild/*-controller.js',
+                    'prebuild/*-controller.js',
                     '!prebuild/js/main.js',
                     'prebuild/js/main.js',
                     '!prebuild/js/ga.js',
