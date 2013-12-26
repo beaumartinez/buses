@@ -103,8 +103,8 @@ module.exports = function(grunt) {
                 // Include controllers just before them
                 src: [
                     'prebuild/js/*.js', 
-                    '!prebuild/js/controllers/*.js',
-                    'prebuild/js/controllers/*.js',
+                    '!prebuild/*Controller.js',
+                    'prebuild/*Controller.js',
                     '!prebuild/js/main.js',
                     'prebuild/js/main.js',
                     '!prebuild/js/ga.js',
