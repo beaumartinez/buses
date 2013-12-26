@@ -163,11 +163,13 @@ module.exports = function(grunt) {
         },
     });
 
+    // End of config
+
     require('load-grunt-tasks')(grunt);
 
     grunt.registerTask('copy-css', ['clean:css', 'copy:css', 'concat:css', 'cssmin']);
     grunt.registerTask('copy-js', ['clean:js', 'copy:js', 'concat:js', 'uglify']);
     grunt.registerTask('copy-html', ['clean:html', 'copy:html', 'htmlmin']);
 
-    grunt.registerTask('default', ['clean:pre', 'bower', 'htmlmin', 'copy', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['clean:pre', 'bower', 'htmlmin', 'copy', 'concat', 'uglify', 'cssmin', 'clean:post']);
 };
