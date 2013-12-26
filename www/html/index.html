@@ -10,46 +10,37 @@
 <body class=container ng-app=buses ng-controller=mainController>
 	<h1>Bus stops within 300 metres</h1>
 
-	{{ beau }}
-
 	<div>
 		<button id=collapse-all class="hidden btn btn-default">Collapse all</button>
-		<div>
-			<p id=loading>Getting location data...</p>
-			<div class="spinner hidden">
-				<div class="double-bounce1"></div>
-				<div class="double-bounce2"></div>
-			</div>
-		</div>
-		<p id=error class=hidden></p>
 	</div>
 
-	<article id=content></article>
+	<div>
+		<p id=loading>Getting location data...</p>
+		<div class="spinner hidden">
+			<div class="double-bounce1"></div>
+			<div class="double-bounce2"></div>
+		</div>
+	</div>
+	<p id=error class=hidden></p>
 
-	<footer>
-		<p class=hidden>Location accurate to <span id=accuracy></span> metres.</p>
-		<p>Made by <a href=http://beaumartinez.com/ target=_blank>Beau Martinez</a>. Data provided by TFL.</p>
-	</footer>
+	<article id=content>
+		<section id=stop-template class=stop ng-repeat="stop in stops">
+			<h2 class=stop-title>
+				{{ stop.stopName }} <span ng-if=stop.stopCode>({{ stop.stopCode }})</span>
+				<span class=break>Towards {{ stop.towards }}</span>
+				<span class=break>{{ stop.distance }} metres away</span>
+			</h2>
 
-	<script id=stop-template type=text/html>
-		<section class=stop>
-			<h2 class=stop-title>{{> stopTitleTemplate }}</h2>
-
-			<ol class="stop-arrivals list-unstyled">
-				{{# arrivals }}
-					<li>{{> arrivalTemplate }}	
-				{{/ arrivals }}
+			<ol class="stop-arrivals list-unstyled" ng-repeat="arrival in stop.arrivals">
+				<li>{{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta }})
 			</ol>
 		</section>
-	</script>
-	<script id=stop-title-template type=text/html>
-		{{ exampleArrival.stopName }} {{#if exampleArrival.stopCode }}({{ exampleArrival.stopCode }}){{/ if }}
-		<span class=break>Towards {{ exampleArrival.towards }}</span>
-		<span class=break>{{ exampleArrival.distance }} metres away</span>
-	</script>
-	<script id=arrival-template type=text/html>
-		{{ route }} to {{ destination }} ({{ eta }})
-	</script>
+	</article>
+
+	<footer>
+		<p class=hidden>Location accurate to <span id=accuracy>{{ accuracy }}</span> metres.</p>
+		<p>Made by <a href=http://beaumartinez.com/ target=_blank>Beau Martinez</a>. Data provided by TFL.</p>
+	</footer>
 
 	<script src=/main.js></script>
 </body>
