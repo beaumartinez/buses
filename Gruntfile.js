@@ -105,8 +105,6 @@ module.exports = function(grunt) {
                     'prebuild/js/*.js', 
                     '!prebuild/*-controller.js',
                     'prebuild/*-controller.js',
-                    '!prebuild/js/main.js',
-                    'prebuild/js/main.js',
                     '!prebuild/js/ga.js',
                     'prebuild/js/ga.js',
                 ],
