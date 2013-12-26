@@ -28,7 +28,7 @@ module.exports = function(grunt) {
                 expand: true,
                 flatten: true,
                 src: ['www/html/*.html'],
-                dest: 'build/html/',
+                dest: 'build/',
             },
         },
 
@@ -123,7 +123,7 @@ module.exports = function(grunt) {
         uglify: {
             js: {
                 files: {
-                    'build/js/main.js': ['prebuild/js/main.js'],
+                    'build/main.js': ['prebuild/js/main.js'],
                 },
             },
         },
@@ -134,7 +134,7 @@ module.exports = function(grunt) {
                     keepSpecialComments: 0,
                 },
                 files: {
-                    'build/css/style.css': ['prebuild/css/style.css'],
+                    'build/style.css': ['prebuild/css/style.css'],
                 },
             },
         },
