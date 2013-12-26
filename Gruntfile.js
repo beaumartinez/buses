@@ -25,9 +25,9 @@ module.exports = function(grunt) {
                     removeOptionalTags: true,
                 },
 
-                files: {
-                    'build/html/index.html': 'www/html/index.html',
-                },
+                expand: true,
+                src: ['www/html/*.html'],
+                dest: 'build/html/',
             },
         },
 
@@ -153,6 +153,13 @@ module.exports = function(grunt) {
                     spawn: false,
                 },
             },
+            html: {
+                files: ['www/html/*.html'],
+                tasks: ['copy-html'],
+                options: {
+                    spawn: false,
+                },
+            },
         },
     });
 
@@ -160,5 +167,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('copy-css', ['clean:css', 'copy:css', 'concat:css', 'cssmin']);
     grunt.registerTask('copy-js', ['clean:js', 'copy:js', 'concat:js', 'uglify']);
+    grunt.registerTask('copy-html', ['clean:html', 'copy:html', 'htmlmin']);
+
     grunt.registerTask('default', ['clean:pre', 'bower', 'htmlmin', 'copy', 'concat', 'uglify', 'cssmin']);
 };
