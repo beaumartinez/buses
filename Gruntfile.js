@@ -169,7 +169,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('watch-css', ['clean:css', 'copy:css', 'concat:css', 'cssmin']);
     grunt.registerTask('watch-js', ['clean:js', 'copy:js', 'concat:js', 'uglify']);
-    grunt.registerTask('watch-html', ['clean:html', 'copy:html', 'htmlmin']);
+    grunt.registerTask('watch-html', ['clean:html', 'htmlmin']);
 
     grunt.registerTask('default', ['clean:pre', 'bower', 'htmlmin', 'copy', 'concat', 'uglify', 'cssmin', 'clean:post']);
 };
