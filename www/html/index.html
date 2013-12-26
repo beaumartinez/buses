@@ -11,9 +11,13 @@
 	<h1>Bus stops within 300 metres</h1>
 	<button ng-if=stops ng-click="collapseAll = !collapseAll" class="btn btn-default">Collapse all</button>
 
-	<div ng-show=loading class=spinner>
-		<div class="double-bounce1"></div>
-		<div class="double-bounce2"></div>
+	<div ng-show=loading>
+		<p>{{ loading }}</p>
+
+		<div class=spinner>
+			<div class="double-bounce1"></div>
+			<div class="double-bounce2"></div>
+		</div>
 	</div>
 
 	<p ng-if=error id=error>{{ error }}</p>
@@ -23,11 +27,11 @@
 			<h2>
 				{{ stop.stopName }} <span ng-if=stop.stopCode>({{ stop.stopCode }})</span>
 				<span class=break>Towards {{ stop.towards }}</span>
-				<span class=break>{{ stop.distance }} metres away</span>
+				<span class=break>{{ stop.distance * 1000 | number:0 }} metres away</span>
 			</h2>
 
 			<ol ng-repeat="arrival in stop.arrivals" class=list-unstyled ng-hide="collapseAll || collapse">
-				<li>{{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta }})</li>
+				<li>{{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta | timeago }})</li>
 			</ol>
 		</section>
 	</main>

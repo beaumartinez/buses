@@ -2,9 +2,11 @@
     'use strict';
 
     window.buses.controller('mainController', ['$scope', '$http', function($scope, $http) {
-        $scope.loading = true;
+        $scope.loading = 'Getting your location...';
 
         navigator.geolocation.watchPosition(function(geoposition) {
+        $scope.loading = 'Getting arrivals...';
+
             $http.get('/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/').success(function(allArrivals) {
                 // allArrivals is an array of all arrivals, ungrouped by bus stop and unsorted.
                 // We need to group and sort them.
@@ -17,49 +19,20 @@
                     // Group by bus stop
 
                     var stopLookup = _.groupBy(allArrivals, 'stopId');
-
-                    // Sort by distance
-
                     var stopIds = Object.getOwnPropertyNames(stopLookup);
 
-                    stopIds = stopIds.sort(function(a, b) {
-                        var aExample = stopLookup[a][0];
-                        var bExample = stopLookup[b][0];
+                    var stops = [];
 
-                        return aExample.distance - bExample.distance;
-                    });
-
-                    // Set $scope.stops
-
-                    $scope.stops = [];
+                    // Process each stop
 
                     stopIds.forEach(function(stopId) {
                         var stopArrivals = stopLookup[stopId];
-
-                        // Sort by ETA
                         stopArrivals = _.sortBy(stopArrivals, 'eta');
-
-                        // Format ETAs nicely
-                        stopArrivals.map(function(stopArrival) {
-                            var eta = moment(stopArrival.eta);
-                            eta = eta.fromNow(true);
-
-                            stopArrival.eta = eta;
-
-                            return stopArrival;
-                        });
-
-                        // Format distances nicely
-                        stopArrivals.map(function(stopArrival) {
-                            stopArrival.distance = stopArrival.distance * 1000;
-                            stopArrival.distance = stopArrival.distance.toFixed(0);
-
-                            return stopArrival;
-                        });
 
                         var exampleArrival = stopArrivals[0];
 
-                        $scope.stops.push({
+                        // Add stop to stops
+                        stops.push({
                             stopName: exampleArrival.stopName,
                             stopCode: exampleArrival.stopCode,
                             towards: exampleArrival.towards,
@@ -68,6 +41,8 @@
                             arrivals: stopArrivals,
                         });
                     });
+
+                    $scope.stops = _.sortBy(stops, 'distance');
                 }
 
                 $scope.accuracy = geoposition.coords.accuracy.toFixed(0);
