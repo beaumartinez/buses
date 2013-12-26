@@ -3,12 +3,12 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         clean: {
-            pre: ['lib', 'prebuild', 'build'], 
-            post: ['lib', 'prebuild'], 
+            pre: ['prebuild', 'build'], 
+            post: ['prebuild'], 
 
-            css: ['prebuild/*.css'],
-            js: ['prebuild/*.js'],
-            html: ['prebuild/*.html'],
+            css: ['prebuild/*.css', 'build/*.css'],
+            js: ['prebuild/*.js', 'build/*.js'],
+            html: ['prebuild/*.html', 'build/*.html'],
         },
 
         bower: {
