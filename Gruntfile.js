@@ -141,21 +141,21 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['www/js/*.js'],
-                tasks: ['copy-js'],
+                tasks: ['watch-js'],
                 options: {
                     spawn: false,
                 },
             },
             css: {
                 files: ['www/css/*.css'],
-                tasks: ['copy-css'],
+                tasks: ['watch-css'],
                 options: {
                     spawn: false,
                 },
             },
             html: {
                 files: ['www/html/*.html'],
-                tasks: ['copy-html'],
+                tasks: ['watch-html'],
                 options: {
                     spawn: false,
                 },
@@ -167,9 +167,9 @@ module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('copy-css', ['clean:css', 'copy:css', 'concat:css', 'cssmin']);
-    grunt.registerTask('copy-js', ['clean:js', 'copy:js', 'concat:js', 'uglify']);
-    grunt.registerTask('copy-html', ['clean:html', 'copy:html', 'htmlmin']);
+    grunt.registerTask('watch-css', ['clean:css', 'copy:css', 'concat:css', 'cssmin']);
+    grunt.registerTask('watch-js', ['clean:js', 'copy:js', 'concat:js', 'uglify']);
+    grunt.registerTask('watch-html', ['clean:html', 'copy:html', 'htmlmin']);
 
     grunt.registerTask('default', ['clean:pre', 'bower', 'htmlmin', 'copy', 'concat', 'uglify', 'cssmin', 'clean:post']);
 };
