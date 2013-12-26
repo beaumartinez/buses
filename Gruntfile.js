@@ -26,6 +26,7 @@ module.exports = function(grunt) {
                 },
 
                 expand: true,
+                flatten: true,
                 src: ['www/html/*.html'],
                 dest: 'build/html/',
             },
