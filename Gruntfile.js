@@ -3,7 +3,7 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         clean: {
-            pre: ['prebuild', 'build'], 
+            pre: ['lib', 'prebuild', 'build'], 
             post: ['prebuild'], 
 
             css: ['prebuild/*.css', 'build/*.css'],
