@@ -41,10 +41,6 @@ footer {
 	font-weight: bold;
 }
 
-#loading-container {
-	margin-bottom: 12px;
-}
-
 .btn:active,
 .btn.active {
 	box-shadow: inherit;
