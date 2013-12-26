@@ -1,3 +1,5 @@
-'use strict';
+(function() {
+    'use strict';
 
-var app = angular.module('buses', []);
+    window.app = angular.module('buses', []);
+})()
