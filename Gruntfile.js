@@ -100,8 +100,11 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 // Include main.js and ga.js at the end
+                // Include controllers just before them
                 src: [
                     'prebuild/js/*.js', 
+                    '!prebuild/js/controllers/*.js',
+                    'prebuild/js/controllers/*.js',
                     '!prebuild/js/main.js',
                     'prebuild/js/main.js',
                     '!prebuild/js/ga.js',
