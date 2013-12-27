@@ -9,21 +9,21 @@
 
 <body class=container ng-app=buses ng-controller=mainController>
 	<h1>Bus stops within 300 metres</h1>
-	<button ng-show=allArrivals ng-click="collapseAll()" class="btn btn-default">Collapse all</button>
+	<button ng-show=allArrivals ng-click=collapseAll() class="btn btn-default">Collapse all</button>
 
 	<div ng-show=loading>
 		<p>{{ loading }}</p>
 
 		<div class=spinner>
-			<div class="double-bounce1"></div>
-			<div class="double-bounce2"></div>
+			<div class=double-bounce1></div>
+			<div class=double-bounce2></div>
 		</div>
 	</div>
 
 	<p ng-if=error id=error>{{ error }}</p>
 
 	<main>
-		<section ng-click="collapse()" ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'" class=stop>
+		<section ng-click=collapse() ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'" class=stop>
 			<h2>
 				{{ stop.stopName }} <span ng-if=stop.stopCode>({{ stop.stopCode }})</span>
 				<span class=break>Towards {{ stop.towards }}</span>
