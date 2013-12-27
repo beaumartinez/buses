@@ -4,8 +4,6 @@
     "bootstrap": "3.0.0",
     "fastclick": "0.6.10",
     "hammerjs": "1.0.5",
-    "handlebars": "1.0.0",
-    "jquery": "2.0.3",
     "moment": "2.2.1",
     "lodash": "2.0.0",
     "angular": "1.2.6"
