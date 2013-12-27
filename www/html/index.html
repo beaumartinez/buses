@@ -12,10 +12,7 @@
 		<h1>Bus stops within 300 metres</h1>
 
 		<div ng-cloak>
-			<div id=spinner-container>
-				<div ng-show=loading class=spinner></div>
-			</div>
-			<p ng-show="loading && ! allArrivals">{{ loading }}</p>
+			<p ng-show=loading>{{ loading }}</p>
 			<p ng-show=error class=error>{{ error }}</p>
 		</div>
 	</header>
