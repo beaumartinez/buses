@@ -44,6 +44,10 @@ footer {
 	margin-top: 14px;
 }
 
+section {
+	cursor: pointer;
+}
+
 .btn:active,
 .btn.active {
 	box-shadow: inherit;
@@ -62,8 +66,4 @@ footer {
 
 .error {
 	font-weight: bold;
-}
-
-section {
-	cursor: pointer;
 }
