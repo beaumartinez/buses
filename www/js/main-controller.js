@@ -11,7 +11,7 @@
             var url = '/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/';
 
             $scope.error = undefined;
-            $scope.loading = 'Getting bus stops...';
+            $scope.loading = 'Loading bus stops...';
 
             $http.get(url).success(function(allArrivals) {
                 $scope.loading = false;
