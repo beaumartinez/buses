@@ -2,7 +2,7 @@
 <html>
 <meta charset=utf-8>
 <title>London Bus Arrival Times</title>
-<meta name=description content="London bus arrival times for stops within 300 metres of your current location.">
+<meta name=description content="London bus stop arrival times within 300 metres of your current location.">
 <meta name=viewport content=width=device-width>
 
 <link href=/style.css rel=stylesheet>
@@ -11,7 +11,7 @@
 	<h1>Bus stops within 300 metres</h1>
 	<button ng-show=allArrivals ng-click="collapseAll()" class="btn btn-default">Collapse all</button>
 
-	<div ng-hide=allArrivals>
+	<div ng-show=loading>
 		<p>{{ loading }}</p>
 
 		<div class=spinner>
