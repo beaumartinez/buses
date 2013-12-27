@@ -9,9 +9,9 @@
 
 <body class=container ng-app=buses ng-controller=mainController>
 	<h1>Bus stops within 300 metres</h1>
-	<button ng-if=stops ng-click="collapseAll = !collapseAll" class="btn btn-default">Collapse all</button>
+	<button ng-show=allArrivals ng-click="collapseAll()" class="btn btn-default">Collapse all</button>
 
-	<div ng-show=loading>
+	<div ng-hide=allArrivals>
 		<p>{{ loading }}</p>
 
 		<div class=spinner>
@@ -23,21 +23,21 @@
 	<p ng-if=error id=error>{{ error }}</p>
 
 	<main>
-		<section ng-click="collapse = !collapse" ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'" class=stop>
+		<section ng-click="collapse()" ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'" class=stop>
 			<h2>
 				{{ stop.stopName }} <span ng-if=stop.stopCode>({{ stop.stopCode }})</span>
 				<span class=break>Towards {{ stop.towards }}</span>
 				<span class=break>{{ stop.distance * 1000 | number:0 }} metres away</span>
 			</h2>
 
-			<ol ng-repeat="arrival in allArrivals | filter: { stopId: stop.stopId } | orderBy:'eta'" class=list-unstyled ng-hide="collapseAll || collapse">
-				<li>{{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta | timeago }})</li>
+			<ol class=list-unstyled>
+				<li ng-repeat="arrival in allArrivals | filter: { stopId: stop.stopId } | orderBy:'eta'">{{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta | timeago }})</li>
 			</ol>
 		</section>
 	</main>
 
 	<footer>
-	<p ng-if=accuracy>Location accurate to {{ accuracy | number:0 }} metres.</p>
+		<p ng-if=accuracy>Location accurate to {{ accuracy | number:0 }} metres.</p>
 		<p>Made by <a href=http://beaumartinez.com/ target=_blank>Beau Martinez</a>. Data provided by TFL.</p>
 	</footer>
 
