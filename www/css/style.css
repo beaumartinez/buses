@@ -1,6 +1,9 @@
-a, a:active, a:hover, a:visited {
-	text-decoration: inherit;
+a,
+a:active,
+a:hover,
+a:visited {
 	color: #0088cc;
+	text-decoration: inherit;
 }
 
 body {
@@ -13,20 +16,24 @@ body {
 h1 {
 	font-size: 24px;
 	line-height: 1.2;
-	margin-top: 18px;
 	margin-bottom: 12px;
+	margin-top: 18px;
 }
 
 h2 {
 	color: #0088cc;
 	font-size: 20px;
 	line-height: 1.2;
-	margin-top: 18px;
 	margin-bottom: 8px;
+	margin-top: 18px;
 }
 
 h2 .break {
 	font-weight: normal;
+}
+
+h2:nth-of-type(1) {
+	margin-top: 0;
 }
 
 span.break {
@@ -35,10 +42,6 @@ span.break {
 
 footer {
 	margin-top: 14px;
-}
-
-#error {
-	font-weight: bold;
 }
 
 .btn:active,
@@ -57,33 +60,29 @@ footer {
 	border-color: #cccccc;
 }
 
-.hidden {
-	display: none;
+.error {
+	font-weight: bold;
 }
 
-.stop {
+section {
 	cursor: pointer;
 }
 
 /* Spinner things */
 
-#collapse-all {
-	float: left;
-	margin-right: 8px;
-}
-
 #spinner-container {
-	overflow: hidden;
+	height: 34px;
+	margin-bottom: 8px;
+	width: 34px;
 }
 
 .spinner {
-	-webkit-animation: scaleout 1.0s infinite ease-in-out;
 	animation: scaleout 1.0s infinite ease-in-out;
+	-webkit-animation: scaleout 1.0s infinite ease-in-out;
 	background-color: #333;
 	border-radius: 100%;
-	height: 34px;
-	width: 34px;
-	float: left;
+	height: 100%;
+	width: 100%;
 }
 
 @-webkit-keyframes scaleout {
@@ -99,13 +98,13 @@ footer {
 
 @keyframes scaleout {
 	0% { 
-		-webkit-transform: scale(0.0);
 		transform: scale(0.0);
+		-webkit-transform: scale(0.0);
 	}
 
 	100% {
-		-webkit-transform: scale(1.0);
 		opacity: 0;
 		transform: scale(1.0);
+		-webkit-transform: scale(1.0);
 	}
 }

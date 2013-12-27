@@ -11,33 +11,31 @@
 	<header>
 		<h1>Bus stops within 300 metres</h1>
 
-		<div id=spinner-container>
-			<button ng-show=allArrivals ng-click=collapseAll() class="btn btn-default" id=collapse-all>Collapse all</button>
-			<div ng-show=loading class=spinner></div>
+		<div ng-cloak>
+			<div id=spinner-container>
+				<div ng-show=loading class=spinner></div>
+			</div>
+			<p ng-show="loading && ! allArrivals">{{ loading }}</p>
+			<p ng-show=error class=error>{{ error }}</p>
 		</div>
-		<div ng-show="loading && ! allArrivals">
-			<p>{{ loading }}</p>
-		</div>
-
-		<p ng-if=error id=error>{{ error }}</p>
 	</header>
 
-	<main>
-		<section ng-click="collapsed = !collapsed" ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'" class=stop>
+	<main ng-cloak>
+		<section ng-click="visible = !visible" ng-repeat="stop in stops">
 			<h2>
 				{{ stop.stopName }} <span ng-if=stop.stopCode>({{ stop.stopCode }})</span>
 				<span class=break>Towards {{ stop.towards }}</span>
 				<span class=break>{{ stop.distance * 1000 | number:0 }} metres away</span>
 			</h2>
 
-			<ol ng-hide=collapsed class=list-unstyled>
+			<ol ng-show=visible class=list-unstyled>
 				<li ng-repeat="arrival in allArrivals | filter: { stopId: stop.stopId } | orderBy:'eta'">{{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta | timeago }})</li>
 			</ol>
 		</section>
 	</main>
 
 	<footer>
-		<p ng-if=accuracy>Location accurate to {{ accuracy | number:0 }} metres.</p>
+		<p ng-cloak ng-if=accuracy>Location accurate to {{ accuracy | number:0 }} metres.</p>
 		<p>Made by <a href=http://beaumartinez.com/ target=_blank>Beau Martinez</a>. Data provided by TFL.</p>
 	</footer>
 
