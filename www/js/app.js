@@ -1,5 +1,5 @@
 (function() {
     'use strict';
 
-    window.buses = angular.module('buses', []);
+    window.app = angular.module('buses', []);
 })();
