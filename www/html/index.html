@@ -10,15 +10,13 @@
 <body class=container ng-app=buses ng-controller=mainController>
 	<header>
 		<h1>Bus stops within 300 metres</h1>
-		<button ng-show=allArrivals ng-click=collapseAll() class="btn btn-default">Collapse all</button>
 
-		<div ng-show=loading>
+		<div id=spinner-container>
+			<button ng-show=allArrivals ng-click=collapseAll() class="btn btn-default" id=collapse-all>Collapse all</button>
+			<div ng-show=loading class=spinner></div>
+		</div>
+		<div ng-show="loading && ! allArrivals">
 			<p>{{ loading }}</p>
-
-			<div class=spinner>
-				<div class=double-bounce1></div>
-				<div class=double-bounce2></div>
-			</div>
 		</div>
 
 		<p ng-if=error id=error>{{ error }}</p>

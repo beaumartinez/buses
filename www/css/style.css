@@ -67,49 +67,45 @@ footer {
 
 /* Spinner things */
 
+#collapse-all {
+	float: left;
+	margin-right: 8px;
+}
+
+#spinner-container {
+	overflow: hidden;
+}
+
 .spinner {
-	height: 40px;
-	width: 40px;
+	-webkit-animation: scaleout 1.0s infinite ease-in-out;
+	animation: scaleout 1.0s infinite ease-in-out;
+	background-color: #333;
+	border-radius: 100%;
+	height: 34px;
+	width: 34px;
+	float: left;
 }
 
-.double-bounce1,
-.double-bounce2 {
-    background-color: #333;
-    border-radius: 50%;
-    height: 40px;
-    opacity: 0.6;
-    position: absolute;
-    width: 40px;
-    
-    animation: bounce 2.0s infinite ease-in-out;
-    -webkit-animation: bounce 2.0s infinite ease-in-out;
-}
+@-webkit-keyframes scaleout {
+	0% {
+		-webkit-transform: scale(0.0);
+	}
 
-.double-bounce2 {
-    animation-delay: -1.0s;
-    -webkit-animation-delay: -1.0s;
-}
-
-@keyframes bounce {
-    0%,
-	100% { 
-        transform: scale(0.0);
-        -webkit-transform: scale(0.0);
-    }
-    
-    50% { 
-        transform: scale(1.0);
-        -webkit-transform: scale(1.0);
-    }
-}
-
-@-webkit-keyframes bounce {
-    0%,
 	100% {
-		-webkit-transform: scale(0.0)
-    }
+		-webkit-transform: scale(1.0);
+		opacity: 0;
+	}
+}
 
-    50% {
-        -webkit-transform: scale(1.0)
-    }
+@keyframes scaleout {
+	0% { 
+		-webkit-transform: scale(0.0);
+		transform: scale(0.0);
+	}
+
+	100% {
+		-webkit-transform: scale(1.0);
+		opacity: 0;
+		transform: scale(1.0);
+	}
 }
