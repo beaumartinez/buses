@@ -32,10 +32,6 @@ h2 .break {
 	font-weight: normal;
 }
 
-h2:nth-of-type(1) {
-	margin-top: 0;
-}
-
 span.break {
 	display: block;
 }
