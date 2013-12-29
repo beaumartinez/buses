@@ -20,7 +20,7 @@
                 $scope.error = (response.status === 502) ? "TFL " : "Our ";
                 $scope.error += "services are down. Please try again later.";
             });
-        }, function(geoposition) {
+        }, function() {
             $scope.error = "Couldn't get your location.";
         });
     }]);
