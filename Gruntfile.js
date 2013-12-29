@@ -3,8 +3,8 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         clean: {
-            pre: ['lib', 'prebuild', 'build'], 
-            post: ['prebuild'], 
+            all: ['lib', 'prebuild', 'build'], 
+            prebuild: ['prebuild'], 
 
             css: ['prebuild/*.css', 'build/*.css'],
             js: ['prebuild/*.js', 'build/*.js'],
@@ -33,20 +33,24 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            bower: {
+            bowerJs: {
                 files: [
                     {
                         expand: true,
                         flatten: true, 
                         src: ['lib/**/*.js', '!**/bootstrap.js'],
-                        dest: 'prebuild/js/',
+                        dest: 'prebuild/',
                         filter: 'isFile',
                     },
+                ],
+            },
+            bowerCss: {
+                files: [
                     {
                         expand: true,
                         flatten: true, 
                         src: ['lib/**/*.css'],
-                        dest: 'prebuild/css/',
+                        dest: 'prebuild/',
                         filter: 'isFile',
                     },
                 ],
@@ -56,8 +60,8 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         flatten: true, 
-                        src: ['www/js/*.js', 'www/js/**/*.js'],
-                        dest: 'prebuild/js/',
+                        src: ['www/js/*.js'],
+                        dest: 'prebuild/',
                         filter: 'isFile',
                     },
                 ],
@@ -68,7 +72,7 @@ module.exports = function(grunt) {
                         expand: true,
                         flatten: true, 
                         src: ['www/css/*.css'],
-                        dest: 'prebuild/css/',
+                        dest: 'prebuild/',
                         filter: 'isFile',
                     },
                 ],
@@ -91,31 +95,31 @@ module.exports = function(grunt) {
                 // Include main.js and ga.js at the end
                 // Include controllers just before them
                 src: [
-                    'prebuild/js/*.js', 
-                    '!prebuild/js/*-controller.js', 
-                    'prebuild/js/*-controller.js', 
-                    '!prebuild/js/main.js',
-                    'prebuild/js/main.js',
-                    '!prebuild/js/ga.js',
-                    'prebuild/js/ga.js',
+                    'prebuild/*.js', 
+                    '!prebuild/*-controller.js', 
+                    'prebuild/*-controller.js', 
+                    '!prebuild/main.js',
+                    'prebuild/main.js',
+                    '!prebuild/ga.js',
+                    'prebuild/ga.js',
                 ],
-                dest: 'prebuild/js/main.js',
+                dest: 'prebuild/main.js',
             },
             css: {
                 // Include style.css at the end
                 src: [
-                    'prebuild/css/*.css',
-                    '!**/style.css',
-                    '**/style.css',
+                    'prebuild/*.css',
+                    '!prebuild/style.css',
+                    'prebuild/style.css',
                 ],
-                dest: 'prebuild/css/style.css',
+                dest: 'prebuild/style.css',
             },
         },
 
         uglify: {
             js: {
                 files: {
-                    'build/main.js': ['prebuild/js/main.js'],
+                    'build/main.js': ['prebuild/main.js'],
                 },
             },
         },
@@ -126,14 +130,14 @@ module.exports = function(grunt) {
                     keepSpecialComments: 0,
                 },
                 files: {
-                    'build/style.css': ['prebuild/css/style.css'],
+                    'build/style.css': ['prebuild/style.css'],
                 },
             },
         },
 
         watch: {
             js: {
-                files: ['www/js/*.js', 'www/js/**/*.js'],
+                files: ['www/js/*.js'],
                 tasks: ['watch-js'],
                 options: {
                     spawn: false,
@@ -160,9 +164,9 @@ module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('watch-css', ['clean:css', 'copy:css', 'concat:css', 'cssmin']);
-    grunt.registerTask('watch-js', ['clean:js', 'copy:js', 'concat:js', 'uglify']);
+    grunt.registerTask('watch-css', ['clean:css', 'copy:bowerCss', 'copy:css', 'concat:css', 'cssmin']);
+    grunt.registerTask('watch-js', ['clean:js', 'copy:bowerJs', 'copy:js', 'concat:js', 'uglify']);
     grunt.registerTask('watch-html', ['clean:html', 'htmlmin']);
 
-    grunt.registerTask('default', ['clean:pre', 'bower', 'htmlmin', 'copy', 'concat', 'uglify', 'cssmin', 'clean:post']);
+    grunt.registerTask('default', ['clean:all', 'bower', 'copy', 'concat', 'htmlmin', 'cssmin', 'uglify']);
 };
