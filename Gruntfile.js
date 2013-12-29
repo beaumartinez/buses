@@ -42,10 +42,6 @@ module.exports = function(grunt) {
                         dest: 'prebuild/js/',
                         filter: 'isFile',
                         rename: function(destination, source) {
-                            if (source.indexOf('hammer') !== -1) {
-                                return destination + 'hammer.js';
-                            }
-                            
                             if (source.indexOf('lodash') !== -1) {
                                 return destination + 'lodash.js';
                             }
