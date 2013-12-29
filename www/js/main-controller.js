@@ -14,7 +14,7 @@
                 $scope.allArrivals = allArrivals;
 
                 if (allArrivals.length === 0) {
-                    $scope.error = "No bus stops. There might not be buses in your area. TFL services might also be down.";
+                    $scope.error = "No bus stops. There might not be buses in your area.";
                 }
             }).error(function(response) {
                 $scope.error = (response.status === 502) ? "TFL " : "Our ";
