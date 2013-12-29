@@ -5,13 +5,5 @@
     "moment": "2.2.1",
     "lodash": "2.0.0",
     "angular": "1.2.6"
-  },
-  "exportsOverride": {
-    "handlebars": {
-      "": "handlebars.js"
-    },
-    "moment": {
-      "": "moment.js"
-    }
   }
 }
