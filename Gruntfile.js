@@ -41,13 +41,6 @@ module.exports = function(grunt) {
                         src: ['lib/**/*.js', '!**/bootstrap.js'],
                         dest: 'prebuild/js/',
                         filter: 'isFile',
-                        rename: function(destination, source) {
-                            if (source.indexOf('lodash') !== -1) {
-                                return destination + 'lodash.js';
-                            }
-
-                            return destination + source; 
-                        },
                     },
                     {
                         expand: true,
