@@ -19,7 +19,9 @@
 			</h2>
 
 			<ol class=list-unstyled>
-				<li ng-repeat="arrival in allArrivals | filter: { stopId: stop.stopId } | orderBy:'eta'">{{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta | timeago }})</li>
+				<li ng-repeat="arrival in allArrivals | filter: { stopId: stop.stopId } | orderBy:'eta'">
+					{{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta | timeago }})
+				</li>
 			</ol>
 		</section>
 	</main>
