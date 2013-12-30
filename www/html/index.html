@@ -14,19 +14,21 @@
 	</header>
 
 	<main>
-		<section ng-cloak ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'">
-			<h2>
-				{{ stop.stopName }} <span ng-if=stop.stopCode>({{ stop.stopCode }})</span>
-				<span class=break>Towards {{ stop.towards }}</span>
-				<span class=break>{{ stop.distance * 1000 | number:0 }} metres away</span>
-			</h2>
+		<ol class=list-unstyled>
+			<li ng-cloak ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'">
+				<h2>
+					{{ stop.stopName }} <span ng-if=stop.stopCode>({{ stop.stopCode }})</span>
+					<span class=break>Towards {{ stop.towards }}</span>
+					<span class=break>{{ stop.distance * 1000 | number:0 }} metres away</span>
+				</h2>
 
-			<ol class=list-unstyled>
-				<li ng-repeat="arrival in allArrivals | filter: { stopId: stop.stopId } | orderBy:'eta'">
-					{{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta | timeago }})
-				</li>
-			</ol>
-		</section>
+				<ol class=list-unstyled>
+					<li ng-repeat="arrival in allArrivals | filter: { stopId: stop.stopId } | orderBy:'eta'">
+						{{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta | timeago }})
+					</li>
+				</ol>
+			</li>
+		</ol>
 	</main>
 
 	<footer>
