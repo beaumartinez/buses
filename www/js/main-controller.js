@@ -11,6 +11,8 @@
             var url = '/arrival-times/' + geoposition.coords.latitude + '/' + geoposition.coords.longitude + '/';
             $http.get(url).success(function(allArrivals) {
                 $scope.loading = false;
+                $scope.error = false;
+
                 $scope.allArrivals = allArrivals;
 
                 if (allArrivals.length === 0) {
