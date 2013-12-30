@@ -1,7 +1,7 @@
 (function() {
-    window.app.filter('timeago', function() {
+    window.app.filter('timeago', ['$window', function($window) {
         return function(input) {
-            return moment(input).fromNow(true);
+            return $window.moment(input).fromNow(true);
         };
-    });
+    }]);
 })();
