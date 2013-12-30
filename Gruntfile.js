@@ -3,12 +3,15 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         clean: {
-            all: ['lib', 'prebuild', 'build'], 
-            prebuild: ['prebuild'], 
+            lib: ['lib'], 
+            build: ['build'], 
 
-            css: ['prebuild/*.css', 'build/*.css'],
-            js: ['prebuild/*.js', 'build/*.js'],
-            html: ['prebuild/*.html', 'build/*.html'],
+            css: ['build/*.css'],
+            js: ['build/*.js'],
+            html: ['build/*.html'],
+            images: ['build/images/*'],
+
+            all: ['lib', 'build']
         },
 
         bower: {
@@ -33,58 +36,13 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            bowerJs: {
-                files: [
-                    {
-                        expand: true,
-                        flatten: true, 
-                        src: ['lib/**/*.js', '!**/bootstrap.js'],
-                        dest: 'prebuild/',
-                        filter: 'isFile',
-                    },
-                ],
-            },
-            bowerCss: {
-                files: [
-                    {
-                        expand: true,
-                        flatten: true, 
-                        src: ['lib/**/*.css'],
-                        dest: 'prebuild/',
-                        filter: 'isFile',
-                    },
-                ],
-            },
-            js: {
-                files: [
-                    {
-                        expand: true,
-                        flatten: true, 
-                        src: ['www/js/*.js'],
-                        dest: 'prebuild/',
-                        filter: 'isFile',
-                    },
-                ],
-            },
-            css: {
-                files: [
-                    {
-                        expand: true,
-                        flatten: true, 
-                        src: ['www/css/*.css'],
-                        dest: 'prebuild/',
-                        filter: 'isFile',
-                    },
-                ],
-            },
             images: {
                 files: [
                     {
                         expand: true,
                         flatten: true, 
                         src: ['www/images/*'],
-                        dest: 'build/images/',
-                        filter: 'isFile',
+                        dest: 'build/images',
                     },
                 ],
             },
@@ -94,15 +52,17 @@ module.exports = function(grunt) {
             js: {
                 files: {
                     // Include main.js and ga.js at the end
-                    // Include controllers just before them
                     'build/main.js': [
-                        'prebuild/*.js', 
-                        '!prebuild/*-controller.js', 
-                        'prebuild/*-controller.js', 
-                        '!prebuild/main.js',
-                        'prebuild/main.js',
-                        '!prebuild/ga.js',
-                        'prebuild/ga.js',
+                        'lib/**/*.js',
+                        '!lib/**/bootstrap.js',
+
+                        '!www/js/app.js',
+                        'www/js/app.js',
+
+                        'www/js/*.js',
+
+                        '!www/js/main.js',
+                        'www/js/main.js',
                     ],
                 },
             },
@@ -113,39 +73,57 @@ module.exports = function(grunt) {
                 options: {
                     keepSpecialComments: 0,
                 },
+
+                // Include style.css at the end
                 files: {
-                    // Include style.css at the end
                     'build/style.css': [
-                        'prebuild/*.css',
-                        '!prebuild/style.css',
-                        'prebuild/style.css',
+                        'lib/**/*.css',
+
+                        'www/css/*.css',
+
+                        '!www/css/style.css',
+                        'www/css/style.css',
                     ],
-                },
+                }
             },
         },
 
         watch: {
             js: {
                 files: ['www/js/*.js'],
-                tasks: ['watch-js'],
+                tasks: ['clean:js', 'uglify'],
                 options: {
                     spawn: false,
                 },
             },
             css: {
                 files: ['www/css/*.css'],
-                tasks: ['watch-css'],
+                tasks: ['clean:css', 'cssmin'],
                 options: {
                     spawn: false,
                 },
             },
             html: {
                 files: ['www/html/*.html'],
-                tasks: ['watch-html'],
+                tasks: ['clean:html', 'htmlmin'],
                 options: {
                     spawn: false,
                 },
             },
+            images: {
+                files: ['www/images/*'],
+                tasks: ['clean:images', 'copy:images'],
+                options: {
+                    spawn: false,
+                },
+            },
+            bower: {
+                files: ['bower.json'],
+                tasks: ['clean:lib', 'bower', 'cssmin', 'uglify'],
+                options: {
+                    spawn: false,
+                },
+            }
         },
     });
 
@@ -153,9 +131,5 @@ module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('watch-css', ['clean:css', 'copy:bowerCss', 'copy:css', 'cssmin']);
-    grunt.registerTask('watch-js', ['clean:js', 'copy:bowerJs', 'copy:js', 'uglify']);
-    grunt.registerTask('watch-html', ['clean:html', 'htmlmin']);
-
-    grunt.registerTask('default', ['clean:all', 'bower', 'copy', 'htmlmin', 'cssmin', 'uglify']);
+    grunt.registerTask('default', ['clean:all', 'bower', 'htmlmin', 'copy', 'cssmin', 'uglify']);
 };
