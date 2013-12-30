@@ -9,6 +9,7 @@
 
 <body class=container ng-controller=main>
 	<h1>Bus stops within 300 metres</h1>
+	<p ng-cloak ng-show=error class=text-danger>{{ error }}</p>
 
 	<main>
 		<section ng-cloak ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'">
@@ -28,9 +29,8 @@
 
 	<footer>
 		<div ng-cloak>
-			<p ng-if=accuracy>Location accurate to {{ accuracy | number:0 }} metres.</p>
+			<p ng-show=accuracy>Location accurate to {{ accuracy | number:0 }} metres.</p>
 			<p ng-show=loading>{{ loading }}</p>
-			<p ng-show=error class=text-danger>{{ error }}</p>
 		</div>
 
 		<p>Made by <a href=http://beaumartinez.com/ target=_blank>Beau Martinez</a>. Data provided by TFL.</p>
