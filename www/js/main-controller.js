@@ -17,10 +17,14 @@
                     $scope.error = "No bus stops. There might not be buses in your area.";
                 }
             }).error(function(response) {
+                $scope.loading = false;
+
                 $scope.error = (response.status === 502) ? "TFL " : "Our ";
                 $scope.error += "services are down. Please try again later.";
             });
         }, function() {
+            $scope.loading = false;
+
             $scope.error = "Couldn't get your location.";
         });
     }]);
