@@ -2,6 +2,10 @@
 
 module.exports = function(grunt) {
     grunt.initConfig({
+        bower: {
+            install: {},
+        },
+
         clean: {
             lib: ['lib'], 
             build: ['build'], 
@@ -14,27 +18,6 @@ module.exports = function(grunt) {
             all: ['lib', 'build']
         },
 
-        bower: {
-            install: {},
-        },
-
-        htmlmin: {
-            html: {
-                options: {
-                    removeComments: true,
-                    collapseWhitespace: true,
-                    collapseBooleanAttributes: true,
-                    removeAttributeQuotes: true,
-                    removeOptionalTags: true,
-                },
-
-                expand: true,
-                flatten: true,
-                src: ['www/html/*.html'],
-                dest: 'build/',
-            },
-        },
-
         copy: {
             images: {
                 files: [
@@ -45,26 +28,6 @@ module.exports = function(grunt) {
                         dest: 'build/images',
                     },
                 ],
-            },
-        },
-
-        uglify: {
-            js: {
-                files: {
-                    // Include main.js and ga.js at the end
-                    'build/main.js': [
-                        'lib/**/*.js',
-                        '!lib/**/bootstrap.js',
-
-                        '!www/js/app.js',
-                        'www/js/app.js',
-
-                        'www/js/*.js',
-
-                        '!www/js/main.js',
-                        'www/js/main.js',
-                    ],
-                },
             },
         },
 
@@ -85,6 +48,43 @@ module.exports = function(grunt) {
                         'www/css/style.css',
                     ],
                 }
+            },
+        },
+
+        htmlmin: {
+            html: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeAttributeQuotes: true,
+                    removeOptionalTags: true,
+                },
+
+                expand: true,
+                flatten: true,
+                src: ['www/html/*.html'],
+                dest: 'build/',
+            },
+        },
+
+        uglify: {
+            js: {
+                files: {
+                    // Include main.js and ga.js at the end
+                    'build/main.js': [
+                        'lib/**/*.js',
+                        '!lib/**/bootstrap.js',
+
+                        '!www/js/app.js',
+                        'www/js/app.js',
+
+                        'www/js/*.js',
+
+                        '!www/js/main.js',
+                        'www/js/main.js',
+                    ],
+                },
             },
         },
 
