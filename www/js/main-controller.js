@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    window.app.controller('main', ['$scope', '$http', function($scope, $http) {
+    window.app.controller('main', ['$http', '$scope', function($http, $scope) {
         $scope.loading = 'Getting your location...';
 
         navigator.geolocation.watchPosition(function(geoposition) {
