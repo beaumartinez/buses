@@ -1,10 +1,10 @@
 (function() {
     'use strict';
 
-    window.app.controller('main', ['$http', '$scope', function($http, $scope) {
+    window.app.controller('main', ['$http', '$scope', '$window', function($http, $scope, $window) {
         $scope.loading = 'Getting your location...';
 
-        navigator.geolocation.watchPosition(function(geoposition) {
+        $window.navigator.geolocation.watchPosition(function(geoposition) {
             $scope.loading = 'Loading bus stops...';
             $scope.accuracy = geoposition.coords.accuracy;
 
