@@ -8,8 +8,10 @@
 <link href=/style.css rel=stylesheet>
 
 <body class=container ng-controller=main>
-	<h1>Bus stops within 300 metres</h1>
-	<p ng-cloak ng-show=error class=text-danger>{{ error }}</p>
+	<header>
+		<h1>Bus stops within 300 metres</h1>
+		<p ng-cloak ng-show=error class=text-danger>{{ error }}</p>
+	</header>
 
 	<main>
 		<section ng-cloak ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'">
