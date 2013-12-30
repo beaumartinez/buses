@@ -29,7 +29,7 @@
 	<footer>
 		<div ng-cloak>
 			<p ng-show=loading>{{ loading }}</p>
-			<p ng-show=error class=error>{{ error }}</p>
+			<p ng-show=error class=text-danger>{{ error }}</p>
 			<p ng-if=accuracy>Location accurate to {{ accuracy | number:0 }} metres.</p>
 		</div>
 
