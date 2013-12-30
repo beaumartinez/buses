@@ -44,22 +44,6 @@ section {
 	cursor: pointer;
 }
 
-.btn:active,
-.btn.active {
-	box-shadow: inherit;
-}
-
-.btn:hover,
-.btn:focus {
-	background-color: inherit;
-}
-
-.btn-default:hover,
-.btn-default:focus {
-	/* Can't use inherit here */
-	border-color: #cccccc;
-}
-
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
 	display: none !important;
 }
