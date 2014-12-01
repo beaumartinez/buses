@@ -4,7 +4,7 @@
     window.app.controller('main', ['$http', '$scope', '$window', function($http, $scope, $window) {
         $scope.loading = 'Getting your location...';
 
-        $window.navigator.geolocation.watchPosition(function(geoposition) {
+        $window.navigator.geolocation.getCurrentPosition(function(geoposition) {
             $scope.loading = 'Loading bus stops...';
             $scope.accuracy = geoposition.coords.accuracy;
 
