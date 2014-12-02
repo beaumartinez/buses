@@ -47,5 +47,5 @@ Piece of cake.
 [Vagrant]: Vagrantfile
 [bus arrivals web service]: buses/app.py
 [front-end dependencies]: bower.json
-[nginx]: etc/nginx-production.conf
+[nginx]: etc/nginx.conf
 [provisioning script]: etc/provision.sh
