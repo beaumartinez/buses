@@ -11,6 +11,8 @@ It uses Flask, AngularJS, and nginx.
 
 ## Setup
 
+ProTip™ make sure you've got Vagrant installed (it's awesome).
+
 1. `vagrant up`
 
 Then check out http://127.0.0.1:8080/ in your browser.
