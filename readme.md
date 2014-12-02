@@ -1,13 +1,13 @@
 # Buses
 
-A location-aware, responsive, blazing-fast London bus arrival website.
+A location-aware, mobile, blazing-fast London bus arrival website.
 
 ## About
 
 Buses consumes Transport For London's bus arrival API, and uses HTML5
 geolocation to show the user all bus stops within 300 meters.
 
-It uses Flask, a bunch of JavaScript libraries, and nginx.
+It uses Flask, AngularJS, and nginx.
 
 ## Setup
 
@@ -17,34 +17,35 @@ Then check out http://127.0.0.1:8080/ in your browser.
 
 ## Under the hood
 
-### HTTP lifecycle
+### How shit works
 
-1. [nginx] serves static content—including [HTML].
-2. [The JavaScript] gets your location, and then sends a request to
-[the bus times web service].
-3. The bus times web service sends a request to TFL's API, parses the response,
-and returns JSON—we can't really cache this as it has to be realtime.
-4. The JavaScript uses Handlebars and a few other helper libraries (namely
-Underscore.js and Moment.js) to show the response as HTML.
+1. Your browser requests the page.
+2. [nginx] serves static content—including [HTML].
+3. The page's [JavaScript] gets your location, and then sends a request to the
+[bus arrivals web service].
+4. The buss arrivals service sends a request to TFL's API, parses the response,
+and returns JSON—this is the bottleneck; we can't cache this since it has to be
+realtime.
+5. We then use AngularJS magic to display the data on the page nicely.
 
-All static content is cached and gzipped, as well as [app cached]—so your next
-pageload'll be blazing fast.
+All static content is cached and gzipped—so your next pageload will be blazing
+fast.
 
 ### Development environment
 
-1. [Vagrant] sets up a virtual machine, and uses [the provisioning script] to
-install all dependencies.
-2. [Grunt tasks] install [front-end dependencies] using Bower, and concats and
+1. [Vagrant] sets up a virtual machine, and uses the [provisioning script] to
+install all dependencies (this took a lot of time and effort to get right, but
+it was worth it).
+2. [Grunt] installs [front-end dependencies] using Bower, and concats and
 minifies them for production.
 
 Piece of cake.
 
-[Grunt tasks]: Gruntfile.js
+[Grunt]: Gruntfile.js
 [HTML]: www/html/index.html
-[The JavaScript]: www/static/js/main.js
+[JavaScript]: www/js/main-controller.js
 [Vagrant]: Vagrantfile
-[app cached]: www/static/production-manifest.appcache
+[bus arrivals web service]: buses/app.py
 [front-end dependencies]: bower.json
 [nginx]: etc/nginx-production.conf
-[the bus times web service]: buses/app.py
-[the provisioning script]: etc/provision.sh
+[provisioning script]: etc/provision.sh
