@@ -23,7 +23,7 @@ Then check out http://127.0.0.1:8080/ in your browser.
 2. [nginx] serves static content—including [HTML].
 3. The page's [JavaScript] gets your location, and then sends a request to the
 [bus arrivals web service].
-4. The buss arrivals service sends a request to TFL's API, parses the response,
+4. The bus arrivals service sends a request to TFL's API, parses the response,
 and returns JSON—this is the bottleneck; we can't cache this since it has to be
 realtime.
 5. We then use AngularJS magic to display the data on the page nicely.
