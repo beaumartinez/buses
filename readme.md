@@ -1,6 +1,6 @@
 # Buses
 
-A location-aware, mobile, blazing-fast London bus arrival website.
+A location-aware, mobile, blazing-fast London bus arrivals website.
 
 ## About
 
