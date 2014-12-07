@@ -8,38 +8,38 @@
 <link href=/style.css rel=stylesheet>
 
 <body class=container ng-controller=main>
-	<header>
-		<h1>Bus stops within 300 metres</h1>
-		<p ng-cloak ng-show=error class=text-danger>{{ error }}</p>
-	</header>
+    <header>
+        <h1>Bus stops within 300 metres</h1>
+        <p ng-cloak ng-show=error class=text-danger>{{ error }}</p>
+    </header>
 
-	<main>
-		<ol class=list-unstyled>
-			<li ng-cloak ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'">
-				<h2>
-					{{ stop.stopName }} <span ng-if=stop.stopCode>({{ stop.stopCode }})</span>
-					<span class=break>Towards {{ stop.towards }}</span>
-					<span class=break>{{ stop.distance * 1000 | number:0 }} metres away</span>
-				</h2>
+    <main>
+        <ol class=list-unstyled>
+            <li ng-cloak ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'">
+                <h2>
+                    {{ stop.stopName }} <span ng-if=stop.stopCode>({{ stop.stopCode }})</span>
+                    <span class=break>Towards {{ stop.towards }}</span>
+                    <span class=break>{{ stop.distance * 1000 | number:0 }} metres away</span>
+                </h2>
 
-				<ol class=list-unstyled>
-					<li ng-repeat="arrival in allArrivals | filter: { stopId: stop.stopId } | orderBy:'eta'">
-						{{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta | timeago }})
-					</li>
-				</ol>
-			</li>
-		</ol>
-	</main>
+                <ol class=list-unstyled>
+                    <li ng-repeat="arrival in allArrivals | filter: { stopId: stop.stopId } | orderBy:'eta'">
+                        {{ arrival.route }} to {{ arrival.destination }} ({{ arrival.eta | timeago }})
+                    </li>
+                </ol>
+            </li>
+        </ol>
+    </main>
 
-	<footer>
-		<div ng-cloak>
-			<p ng-show=accuracy>Location accurate to {{ accuracy | number:0 }} metres.</p>
-			<p ng-show=loading>{{ loading }}</p>
-		</div>
+    <footer>
+        <div ng-cloak>
+            <p ng-show=accuracy>Location accurate to {{ accuracy | number:0 }} metres.</p>
+            <p ng-show=loading>{{ loading }}</p>
+        </div>
 
         <p>Made by <a href=http://beaumartinez.com/ target=_blank>Beau Martinez</a>. Code on <a href=https://github.com/beaumartinez/buses target=_blank>GitHub</a>. Data kindly provided by TFL.</p>
-	</footer>
+    </footer>
 
-	<script src=/main.js></script>
+    <script src=/main.js></script>
 </body>
 </html>

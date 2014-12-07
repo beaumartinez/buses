@@ -2,45 +2,45 @@ a,
 a:active,
 a:hover,
 a:visited {
-	color: #0088cc;
-	text-decoration: inherit;
+    color: #0088cc;
+    text-decoration: inherit;
 }
 
 body {
-	font-size: 16px;
+    font-size: 16px;
 }
 
 h1 {
-	font-size: 24px;
-	line-height: 1.2;
-	margin-bottom: 12px;
-	margin-top: 18px;
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    margin-top: 18px;
 }
 
 h2 {
-	color: #0088cc;
-	font-size: 20px;
-	line-height: 1.2;
-	margin-bottom: 8px;
-	margin-top: 18px;
+    color: #0088cc;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    margin-top: 18px;
 }
 
 h2 .break {
-	font-weight: normal;
+    font-weight: normal;
 }
 
 span.break {
-	display: block;
+    display: block;
 }
 
 footer {
-	margin-top: 14px;
+    margin-top: 14px;
 }
 
 section {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-	display: none !important;
+    display: none !important;
 }
