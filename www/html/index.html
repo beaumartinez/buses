@@ -17,7 +17,7 @@
         <ol class=list-unstyled>
             <li ng-cloak ng-repeat="stop in allArrivals | unique:'stopId' | orderBy:'distance'">
                 <h2>
-                    {{ stop.stopName }} <span ng-if=stop.stopCode>({{ stop.stopCode }})</span>
+                    <span class=title>{{ stop.stopName }} <span ng-if=stop.stopCode>({{ stop.stopCode }})</span></span>
                     <span class=break>Towards {{ stop.towards }}</span>
                     <span class=break>{{ stop.distance * 1000 | number:0 }} metres away</span>
                 </h2>
