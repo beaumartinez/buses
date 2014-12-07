@@ -91,21 +91,21 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['www/js/*.js'],
-                tasks: ['clean:js', 'uglify'],
+                tasks: ['clean:js', 'uglify', 'cacheBust'],
                 options: {
                     spawn: false,
                 },
             },
             css: {
                 files: ['www/css/*.css'],
-                tasks: ['clean:css', 'cssmin'],
+                tasks: ['clean:css', 'cssmin', 'cacheBust'],
                 options: {
                     spawn: false,
                 },
             },
             html: {
                 files: ['www/html/*.html'],
-                tasks: ['clean:html', 'htmlmin'],
+                tasks: ['clean:html', 'htmlmin', 'cacheBust'],
                 options: {
                     spawn: false,
                 },
@@ -119,17 +119,29 @@ module.exports = function(grunt) {
             },
             bower: {
                 files: ['bower.json'],
-                tasks: ['clean:lib', 'bower', 'cssmin', 'uglify'],
+                tasks: ['clean:lib', 'bower', 'cssmin', 'uglify', 'cacheBust'],
                 options: {
                     spawn: false,
                 },
             }
         },
+
+    cacheBust: {
+        options: {
+            algorithm: 'sha1',
+        },
+        assets: {
+            files: [{
+                src: ['build/index.html']
+            }]
+        }
+    },
+        
     });
 
     // End of config
 
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('default', ['clean:all', 'bower', 'htmlmin', 'copy', 'cssmin', 'uglify']);
+    grunt.registerTask('default', ['clean:all', 'bower', 'htmlmin', 'copy', 'cssmin', 'uglify', 'cacheBust']);
 };
